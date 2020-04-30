@@ -3,7 +3,7 @@ const connection = require('../database/connection');
 
 module.exports = {
     async index (req,res) {
-        const users = await connection('users').select('*');
+        const users = await connection('usuarios').select('*');
 
         return res.json(users);
     }, 
@@ -13,7 +13,7 @@ module.exports = {
 
         const id = crypto.randomBytes(4).toString('Hex');
 
-        await connection('users').insert({
+        await connection('usuarios').insert({
             id,
             login,
             senha,            
@@ -25,7 +25,7 @@ module.exports = {
     async delete (req, res) {
         const { id } = req.params;
 
-        await connection('users').where('id', id).delete();
+        await connection('usuarios').where('id', id).delete();
 
         return res.json(204).send();
     },
@@ -35,7 +35,7 @@ module.exports = {
 
         const {login,senha} = req.body;
 
-        await connection('users').where('id', id)
+        await connection('usuarios').where('id', id)
         .update({
             login,
             senha,
