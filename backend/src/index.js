@@ -1,15 +1,12 @@
-const http = require('http');
+const express = require('express');
+const cors = require('cors');
+const routes = require('./routes');
 
-const hostname = '127.0.0.1';
-const port = 3333;
+const app = express();
 
-const server = http.createServer((req,res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
-});
+app.use(cors());
+app.use(express.json());
+app.use(routes);
 
-server.listen(port, hostname, () => {
-    console.log(`Servidor rodando no endereço: http://${hostname}:${port}`);
-});
+app.listen(3333);
 
