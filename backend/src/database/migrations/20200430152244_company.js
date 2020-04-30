@@ -5,6 +5,10 @@ exports.up = function(knex) {
         table.string('service').notNullable();        
         table.string('mail').notNullable();
         table.string('phone').notNullable();
+
+        table.string('admin_id').notNullable();
+
+        table.foreign('admin_id').references('id').inTable('admin');
         
     });
 };
