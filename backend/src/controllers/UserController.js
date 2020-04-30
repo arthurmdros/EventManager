@@ -38,7 +38,7 @@ module.exports = {
 
          const {mail,password,name, phone,company} = req.body;
 
-         await connection('user').where('id', IDBTransaction)
+         await connection('user').where('id', id)
             .update({
                 mail,
                 password,
