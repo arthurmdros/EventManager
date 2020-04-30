@@ -5,6 +5,9 @@ exports.up = function(knex) {
         table.date('data').notNullable();
         table.string('horario').notNullable();
         
+        table.string('org_id').notNullable();
+
+        table.foreign('org_id').references('user_id').inTable('organizador');
     });
 };
 
