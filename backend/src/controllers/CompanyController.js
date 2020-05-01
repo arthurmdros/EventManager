@@ -21,7 +21,7 @@ module.exports = {
     },
 
     async create(req,res){
-        const { name, service, mail, phone} = req.body;
+        const { name, service, mail, phone, event_id} = req.body;
         const admin_id = req.headers.authorization;
 
         const id = crypto.randomBytes(4).toString('HEX');
@@ -32,7 +32,8 @@ module.exports = {
             service,
             mail,
             phone,
-            admin_id
+            admin_id,
+            event_id,
         });
 
         return res.json({id});        
@@ -42,7 +43,7 @@ module.exports = {
         const { id } = req.params;
         const admin_id = req.headers.authorization;
 
-        const { name, service, mail, phone} = req.body;
+        const { name, service, mail, phone, event_id} = req.body;
 
         const company = await connection('company')
             .where('id',id)
@@ -60,6 +61,7 @@ module.exports = {
                 mail,
                 phone,
                 admin_id,
+                event_id,
             })
                 
         return res.json({ id });
