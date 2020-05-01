@@ -3,7 +3,7 @@ const AdminController = require('./controllers/AdminController');
 const UserController = require('./controllers/UserController');
 const CompanyController = require('./controllers/CompanyController');
 const EventController = require('./controllers/EventController');
-
+const TicketController = require('./controllers/TicketController');
 
 const routes = express.Router();
 
@@ -28,6 +28,10 @@ routes.post('/event/create', EventController.create);
 routes.put('/event/update/:id', EventController.update);
 routes.delete('/event/delete/:id', EventController.delete);
 
+routes.get('/ticket/index', TicketController.index);
+routes.post('/ticket/create', TicketController.create);
+routes.put('/ticket/update/:id', TicketController.update);
+routes.delete('/ticket/delete/:id', TicketController.delete);
 
 
 module.exports = routes;
