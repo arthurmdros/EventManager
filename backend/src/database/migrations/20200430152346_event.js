@@ -8,12 +8,10 @@ exports.up = function(knex) {
         table.date('start_date').notNullable();
         table.date('end_date').notNullable();
         table.string('event').notNullable();
-        table.string('comp_id').notNullable();
-        table.string('tick_id').notNullable();
-
-        table.foreign('comp_id').references('id').inTable('company');
-        table.foreign('tick_id').references('id').inTable('ticket');
         
+        table.string('user_id').notNullable();
+                
+        table.foreign('user_id').references('id').inTable('user');
     });
 };
 
