@@ -5,6 +5,9 @@ exports.up = function(knex) {
         table.decimal('value').notNullable();        
         table.integer('amount').notNullable();
         
+        table.string('event_id');
+
+        table.foreign('event_id').references('id').inTable('event');
     });
 };
 
