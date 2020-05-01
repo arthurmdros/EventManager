@@ -7,8 +7,11 @@ exports.up = function(knex) {
         table.string('phone').notNullable();
 
         table.string('admin_id').notNullable();
+        table.string('event_id');
 
         table.foreign('admin_id').references('id').inTable('admin');
+        table.foreign('event_id').references('id').inTable('event');
+        
         
     });
 };
