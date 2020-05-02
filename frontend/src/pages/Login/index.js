@@ -1,28 +1,36 @@
 import React, {useRef} from 'react';
-import './styles.css';
 import { Form } from '@unform/web';
+import {useHistory} from 'react-router-dom';
+
+import './styles.css';
+
 
 import Input from '../component/input';
 import logo from '../../assets/logo.png';
 
 export default function Login(){
     const formRef = useRef(null);
+    const navigation = useHistory();
 
-    function hanldeSubmit(data,{reset}){
+    function handleSubmit(data,{reset}){
         console.log(data);
         reset();
+        if(data.login === "admin"){
+            navigation.push('/page/admin');
+        }
     }
 
     function navigateToRegister(){
         alert('Navegar para formulário de cadastro');
     }
+    
 
     return(
         <div className="loginContainer">                        
             <section className="loginForm">            
                 <img src={logo} alt="Event Manager"/>                            
                 
-                <Form ref={formRef} onSubmit={hanldeSubmit}>
+                <Form ref={formRef} onSubmit={handleSubmit}>
                     <h1>Username:</h1>
                     <Input
                         name="login"
