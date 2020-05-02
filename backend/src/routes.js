@@ -4,8 +4,18 @@ const UserController = require('./controllers/UserController');
 const CompanyController = require('./controllers/CompanyController');
 const EventController = require('./controllers/EventController');
 const TicketController = require('./controllers/TicketController');
+const LoginController = require('./controllers/LoginController');
+const LoginAdmController = require('./controllers/LoginAdmController')
+const ProfileController = require('./controllers/ProfileController');
+const ProfileAdmController = require('./controllers/ProfileAdmController');
+
 
 const routes = express.Router();
+
+routes.post('/admin/session', LoginAdmController.create);
+routes.get('/admin/profile', ProfileAdmController.index);
+routes.post('/user/session', LoginController.create);
+routes.get('/user/profile', ProfileController.index);
 
 routes.get('/admin/index', AdminController.index);
 routes.post('/admin/create', AdminController.create);
@@ -32,6 +42,7 @@ routes.get('/ticket/index', TicketController.index);
 routes.post('/ticket/create', TicketController.create);
 routes.put('/ticket/update/:id', TicketController.update);
 routes.delete('/ticket/delete/:id', TicketController.delete);
+
 
 
 module.exports = routes;
