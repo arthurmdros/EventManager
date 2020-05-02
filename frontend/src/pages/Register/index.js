@@ -1,21 +1,20 @@
 import React, {useRef} from 'react';
 import { Form } from '@unform/web';
 import { FiArrowLeft } from 'react-icons/fi';
-import logo from '../../assets/logo.png';
+import { Link, useHistory} from 'react-router-dom';
 
+import logo from '../../assets/logo.png';
 import './styles.css';
 import Input from '../component/input';
 
 export default function Register(){
+    const navigation = useHistory();
     const formRef = useRef();
-
-    function navigateToLogin(){
-        alert("Página login");
-    }     
     
     function handleSubmit(data, {reset}){
         console.log(data);
         reset();
+        navigation.push('/page/login');
     }
 
     return(
@@ -24,12 +23,12 @@ export default function Register(){
                 <section>
                     <img src={logo} alt="Event Manager"/>
 
-                    <h1>Resgitro</h1>
+                    <h1>Registro</h1>
                     <p>Ao registrar-se no Event Manager você terá uma melhor organização, divulgação e credibilidade na realização de seus eventos.</p>
-                    <a onClick={navigateToLogin}>
+                    <Link to="/page/login">
                         <FiArrowLeft size={16} color="#FFF"/>
                         Já possuo registro                
-                    </a>
+                    </Link>
                 </section>            
             <Form ref={formRef} onSubmit={handleSubmit}>
                 <h1>E-Mail:</h1>
@@ -59,7 +58,7 @@ export default function Register(){
                 />
 
                 <button className="btnForm" onPress={() => formRef.current.submitForm()}>
-                    Registar
+                    Registrar
                 </button>
 
             </Form>
