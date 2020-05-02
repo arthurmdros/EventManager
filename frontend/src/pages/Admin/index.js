@@ -1,17 +1,19 @@
 import React from 'react';
 import {BsPower, BsTrash} from "react-icons/bs";
+import {useHistory} from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
 import './styles.css';
 
 export default function Admin(){
+    const navigation = useHistory();
 
     function disparar(){
         alert('Cadastrar novo evento');
     }
 
     function logout(){
-        alert('Saindo');
+        navigation.push('/page/login');
     }
 
     function deleteEvent(){
@@ -26,7 +28,7 @@ export default function Admin(){
                 
                 <a onClick={disparar}>Cadastrar empresa</a>
                 <button onClick={logout} type="button">
-                    <BsPower size={18} color="#FFF"/>                    
+                    <BsPower size={18} color="#E02041"/>                    
                 </button>
             </header>
 
