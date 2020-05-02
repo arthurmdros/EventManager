@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import { Form } from '@unform/web';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 import './styles.css';
 
@@ -48,7 +48,10 @@ export default function Login(){
                         Entrar
                     </button>
 
-                    <a onClick={navigateToRegister}>Cadastrar-se</a>
+                   
+                    <Link className="registerLink" to="/page/register">
+                        Cadastrar-se
+                    </Link>
                 </Form>
             </section>
         </div>
