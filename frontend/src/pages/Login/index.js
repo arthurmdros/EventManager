@@ -16,12 +16,11 @@ export default function Login(){
         console.log(data);
         reset();
         if(data.login === "admin"){
-            navigation.push('/page/admin');
+            navigation.push('/page/admin/profile');
         }
-    }
-
-    function navigateToRegister(){
-        alert('Navegar para formulário de cadastro');
+        else if(data.login === "usuario"){
+            navigation.push('/page/user/profile')
+        }
     }
     
 
@@ -31,7 +30,7 @@ export default function Login(){
                 <img src={logo} alt="Event Manager"/>                            
                 
                 <Form ref={formRef} onSubmit={handleSubmit}>
-                    <h1>Username:</h1>
+                    <h1>E-mail:</h1>
                     <Input
                         name="login"
                         type="login"
@@ -50,7 +49,7 @@ export default function Login(){
 
                    
                     <Link className="registerLink" to="/page/register">
-                        Cadastrar-se
+                        Registrar-se
                     </Link>
                 </Form>
             </section>
