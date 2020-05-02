@@ -9,15 +9,15 @@ export default function Admin(){
     const navigation = useHistory();
 
     function disparar(){
-        alert('Cadastrar novo evento');
+        alert('Cadastrar nova empresa');
     }
 
     function logout(){
         navigation.push('/page/login');
     }
 
-    function deleteEvent(){
-        alert('Deletar evento');
+    function deleteCompany(){
+        alert('Deletar empresa');
     }
 
     return(
@@ -42,7 +42,7 @@ export default function Admin(){
                     <strong>Serviço:</strong>
                     <p>Segurança</p>
 
-                    <button onClick={deleteEvent} type="button">
+                    <button onClick={deleteCompany} type="button">
                         <BsTrash size={18} color="#1393f6"/>
                     </button>
                 </li>   
@@ -53,7 +53,7 @@ export default function Admin(){
                     <strong>Serviço:</strong>
                     <p>Segurança</p>
 
-                    <button onClick={deleteEvent} type="button">
+                    <button onClick={deleteCompany} type="button">
                         <BsTrash size={18} color="#1393f6"/>
                     </button>
                 </li> 
@@ -64,7 +64,7 @@ export default function Admin(){
                     <strong>Serviço:</strong>
                     <p>Segurança</p>
 
-                    <button onClick={deleteEvent} type="button">
+                    <button onClick={deleteCompany} type="button">
                         <BsTrash size={18} color="#1393f6"/>
                     </button>
                 </li> 
@@ -75,7 +75,7 @@ export default function Admin(){
                     <strong>Serviço:</strong>
                     <p>Segurança</p>
 
-                    <button onClick={deleteEvent} type="button">
+                    <button onClick={deleteCompany} type="button">
                         <BsTrash size={18} color="#1393f6"/>
                     </button>
                 </li>         
