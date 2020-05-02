@@ -1,0 +1,38 @@
+.loginContainer{
+    width: 100%;  
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;    
+}
+
+.loginContainer section.loginForm img{
+    margin-left: 80px;
+}
+
+.loginContainer section.loginForm{
+    width: 100%;
+    max-width: 350px;    
+}
+
+.loginContainer section.loginForm form{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;      
+    align-items: center;  
+}
+
+.loginContainer section.loginForm form h1{      
+    margin-right: 120px;
+    color: #FFF;
+}
+
+.loginContainer section.loginForm form input, button{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+
