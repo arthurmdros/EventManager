@@ -57,5 +57,6 @@ a{
     font-size: 18px;
     text-decoration: none;
     font-weight: 500;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s;    
+    width: 50%;
 }
