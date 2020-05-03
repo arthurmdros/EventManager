@@ -11,6 +11,11 @@ export default function Admin(){
     function disparar(){
         alert('Cadastrar nova empresa');
     }
+    
+    function disparar_aux(){
+        alert('Atualizar usuário');
+    }
+
 
     function logout(){
         navigation.push('/page/login');
@@ -25,8 +30,10 @@ export default function Admin(){
             <header>
                 <img src={logo} alt="Event Manager"/>
                 <span>Bem vindo, Administrador</span>
-                
-                <a onClick={disparar}>Cadastrar empresa</a>
+                <div>
+                    <a onClick={disparar}>Cadastrar empresa</a>
+                    <a onClick={disparar_aux}>Atualizar informações</a>
+                </div>
                 <button onClick={logout} type="button">
                     <BsPower size={18} color="#E02041"/>                    
                 </button>
