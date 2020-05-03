@@ -1,4 +1,81 @@
-h1 {
-    color:#FFF;
+.newEvent-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 90vh;
+    margin-left: 200px;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+}
+
+.newEvent-container .content{
+    width: 100%;
+    padding: 60px;
+    background: #1393f6;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.newEvent-container .content section{
+    width: 100%;
+    max-width: 380px;
+}
+
+.newEvent-container .content section h1{
+    margin: 40px 0 20px;
+    font-size: 32px;    
+    color: #FFF;
+}
+
+.newEvent-container .content section p {
+    font-size: 18px;
+    color: #FFF;
+    line-height: 32px;
+}
+
+.newEvent-container .content form{
+    width: 100%;
+    max-width: 450px;   
+    margin-top: 50px; 
+}
+
+.newEvent-container .content form input{
+    margin-top: 8px;
+    width: 80%;
+}
+
+.newEvent-container .content form .btnForm{
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.newEvent-container .content form h1{
+    color: #FFF;
+    margin-top: 8px;    
+}
+
+.newEvent-container .content form .input-group{
+    display: flex;
+}
+
+.newEvent-container .content form .input-group input + input{
+    margin-left: 8px;
+}
+
+.newEvent-container .content .container-date, .container-time{
+    display: flex;          
+    margin-left: 10px;    
+}
+
+.newEvent-container .content .titles{    
+    display: flex;
+    justify-content: space-between;
+}
+
+.newEvent-container .content .titles h1{    
     font-size: 16px;
+    margin-right: 110px;
 }
