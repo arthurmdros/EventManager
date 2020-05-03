@@ -1,38 +1,38 @@
-.profileContainer {
+.adminContainer {
     width: 100%;
     max-width: 1180px;
     padding: 0 20px;
     margin: auto;
   }
 
-.profileContainer header {
+.adminContainer header {
     display: flex;
     align-items: center;
 }
 
-.profileContainer header div{
-    display: table-column;
+.adminContainer header div{
+    display: flex;
     align-items: center;
     margin-left: auto;
 }
 
-.profileContainer header span {
+.adminContainer header span {
     font-size: 20px;
     margin-left: 10px;
     color: #FFF;
 }
 
-.profileContainer header img {
+.adminContainer header img {
   height: 150px;
 }
 
-.profileContainer  header a {
+.adminContainer  header a {
   width: 200px;
   margin-left: auto;
   margin-top: 0;
 }
 
-.profileContainer header button {
+.adminContainer header button {
   height: 40px;
   width: 40px;
   border-radius: 4px;
@@ -41,11 +41,11 @@
   transition: border-color 0.5s;
 }
 
-.profileContainer header button:hover {
+.adminContainer header button:hover {
   border-color: #E02041;
 }
 
-.profileContainer h1{
+.adminContainer h1{
     margin-top: 20px;
     margin-bottom: 10px;
     margin-left: 150px;
@@ -53,7 +53,7 @@
     font-size: 20px;
 }
 
-.profileContainer ul {
+.adminContainer ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 18px;
@@ -61,7 +61,7 @@
     margin-left: 150px;
 }
 
-.profileContainer ul li{
+.adminContainer ul li{
     background: #FFF;
     padding: 18px;
     border-radius: 8px;
@@ -69,7 +69,7 @@
     width: 70%;
 }
 
-.profileContainer ul li button{
+.adminContainer ul li button{
     position: absolute;
     right: 4px;
     top: 10px;
@@ -77,21 +77,21 @@
     width: 10%;
 }
 
-.profileContainer ul li button:hover{
+.adminContainer ul li button:hover{
     opacity: 0.8;
 }
 
-.profileContainer ul li strong{
+.adminContainer ul li strong{
     display: block;
     margin-bottom: 16px;
     color: #41414d;    
 }
 
-.profileContainer ul li p + strong{
+.adminContainer ul li p + strong{
     margin-top: 32px;
 }
 
-.profileContainer ul li p{
+.adminContainer ul li p{
     color: #41414d;
     line-height: 21px;
     font-size: 16px;

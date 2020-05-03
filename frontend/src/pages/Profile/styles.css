@@ -11,7 +11,7 @@
 }
 
 .profileContainer header div{
-    display: table-column;
+    display: flex;
     align-items: center;
     margin-left: auto;
 }
