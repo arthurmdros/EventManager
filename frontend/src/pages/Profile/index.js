@@ -8,10 +8,6 @@ import './styles.css';
 export default function Profile(){
     const navigation = useHistory();
 
-    function disparar_aux(){
-        alert('Atualizar usuário');
-    }
-
     function logout(){
         navigation.push('/page/login');
     }
@@ -27,7 +23,7 @@ export default function Profile(){
                 <span>Bem vindo, Fulano de tal</span>
                 <div>
                     <Link to="/page/user/newevent">Cadastrar evento</Link>
-                    <a onClick={disparar_aux}>Atualizar informações</a>
+                    <Link to="/page/user/update">Atualizar perfil</Link>
                 </div>
                 <button onClick={logout} type="button">
                     <BsPower size={18} color="#E02041"/>                    
