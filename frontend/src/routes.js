@@ -6,7 +6,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import NewEvent from './pages/NewEvent';
 import NewCompany from './pages/NewCompany';
-
+import AdminUpdate from './pages/AdminUpdate';
 
 export default function Routes(){
     return(
@@ -17,7 +17,8 @@ export default function Routes(){
                 <Route path="/page/register" exact component = {Register} />                
                 <Route path="/page/user/profile" exact component = {Profile} />
                 <Route path="/page/user/newevent" exact component = {NewEvent} />
-                <Route path="/page/admin/newcompany" exact component = {NewCompany} />
+                <Route path="/page/admin/newcompany" exact component = {NewCompany} />                
+                <Route path="/page/admin/update" exact component = {AdminUpdate} />
             </Switch>
         </BrowserRouter>
     );
