@@ -8,11 +8,6 @@ import './styles.css';
 export default function Admin(){
     const navigation = useHistory();    
     
-    function disparar_aux(){
-        alert('Atualizar usuário');
-    }
-
-
     function logout(){
         navigation.push('/page/login');
     }
@@ -22,13 +17,13 @@ export default function Admin(){
     }
 
     return(
-        <div className="profileContainer">
+        <div className="adminContainer">
             <header>
                 <img src={logo} alt="Event Manager"/>
                 <span>Bem vindo, Administrador</span>
                 <div>
                     <Link to="/page/admin/newcompany">Cadatrar empresa</Link>
-                    <a onClick={disparar_aux}>Atualizar informações</a>
+                    <Link to="/page/admin/update">Atualizar senha</Link>
                 </div>
                 <button onClick={logout} type="button">
                     <BsPower size={18} color="#E02041"/>                    
