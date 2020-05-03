@@ -1,16 +1,12 @@
 import React from 'react';
 import {BsPower, BsTrash} from "react-icons/bs";
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
 import './styles.css';
 
 export default function Profile(){
     const navigation = useHistory();
-
-    function disparar(){
-        alert('Cadastrar novo evento');
-    }
 
     function disparar_aux(){
         alert('Atualizar usuário');
@@ -30,7 +26,7 @@ export default function Profile(){
                 <img src={logo} alt="Event Manager"/>
                 <span>Bem vindo, Fulano de tal</span>
                 <div>
-                    <a onClick={disparar}>Cadastrar evento</a>
+                    <Link to="/page/user/newevent">Cadastrar evento</Link>
                     <a onClick={disparar_aux}>Atualizar informações</a>
                 </div>
                 <button onClick={logout} type="button">
