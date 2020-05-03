@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function NewEvent(){
+export default function AdminUpdate(){
     return(
-        <h1>New event</h1>
+        <h1>Admin update</h1>
     );
 }
