@@ -23,7 +23,8 @@ export default function Profile(){
                 <span>Bem vindo, Fulano de tal</span>
                 <div>
                     <Link to="/page/user/newevent">Cadastrar evento</Link>
-                    <Link to="/page/user/update">Atualizar perfil</Link>
+                    <Link to="/page/user/profile/update">Atualizar perfil</Link>
+                    <Link to="/page/user/update">Configurar conta</Link>
                 </div>
                 <button onClick={logout} type="button">
                     <BsPower size={18} color="#E02041"/>                    
