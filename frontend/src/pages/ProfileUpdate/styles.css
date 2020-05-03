@@ -1,0 +1,64 @@
+.updateContainer {
+    width: 100%;
+    max-width: 1120px;
+    height: 90vh;
+    margin-left: 200px;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+}
+
+.updateContainer .content{
+    width: 100%;
+    padding: 60px;
+    background: #1393f6;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.updateContainer .content section{
+    width: 100%;
+    max-width: 380px;
+}
+
+.updateContainer .content section h1{
+    margin: 40px 0 20px;
+    font-size: 32px;    
+    color: #FFF;
+}
+
+.updateContainer .content section p {
+    font-size: 18px;
+    color: #FFF;
+    line-height: 32px;
+}
+
+.updateContainer .content form{
+    width: 100%;
+    max-width: 450px;   
+    margin-top: 120px; 
+}
+
+.updateContainer .content form input{
+    margin-top: 8px;
+}
+
+.updateContainer .content form .btnForm{
+    margin-top: 30px;
+}
+
+.updateContainer .content form h1{
+    color: #FFF;
+    margin-top: 8px;
+}
+
+.updateContainer .content form .input-group{
+    display: flex;
+}
+
+.updateContainer .content form .input-group input + input{
+    margin-left: 8px;
+}
