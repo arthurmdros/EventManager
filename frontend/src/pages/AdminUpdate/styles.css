@@ -1,4 +1,64 @@
-h1 {
-    font-size: 16px;
+.adminUpdateContainer {
+    width: 100%;
+    max-width: 1120px;
+    height: 90vh;
+    margin-left: 200px;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+}
+
+.adminUpdateContainer .content{
+    width: 100%;
+    padding: 60px;
+    background: #1393f6;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adminUpdateContainer .content section{
+    width: 100%;
+    max-width: 380px;
+}
+
+.adminUpdateContainer .content section h1{
+    margin: 40px 0 20px;
+    font-size: 32px;    
     color: #FFF;
+}
+
+.adminUpdateContainer .content section p {
+    font-size: 18px;
+    color: #FFF;
+    line-height: 32px;
+}
+
+.adminUpdateContainer .content form{
+    width: 100%;
+    max-width: 450px;   
+    margin-top: 120px; 
+}
+
+.adminUpdateContainer .content form input{
+    margin-top: 8px;
+}
+
+.adminUpdateContainer .content form .btnForm{
+    margin-top: 30px;
+}
+
+.adminUpdateContainer .content form h1{
+    color: #FFF;
+    margin-top: 8px;
+}
+
+.adminUpdateContainer .content form .input-group{
+    display: flex;
+}
+
+.adminUpdateContainer .content form .input-group input + input{
+    margin-left: 8px;
 }
