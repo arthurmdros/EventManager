@@ -29,6 +29,10 @@
     color: #FFF;
 }
 
+.loginContainer section.loginForm form a{      
+    width: 25%;
+}
+
 .loginContainer section.loginForm form input, button{
     margin-top: 10px;
     margin-bottom: 20px;
