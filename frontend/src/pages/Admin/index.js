@@ -1,5 +1,6 @@
 import React from 'react';
 import {BsPower, BsTrash} from "react-icons/bs";
+import {FiArrowRight} from "react-icons/fi";
 import {Link, useHistory} from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
@@ -22,7 +23,7 @@ export default function Admin(){
                 <img src={logo} alt="Event Manager"/>
                 <span>Bem vindo, Administrador</span>
                 <div>
-                    <Link to="/page/admin/newcompany">Cadatrar empresa</Link>
+                    <Link to="/page/admin/newcompany">Cadatrar empresa</Link>                    
                     <Link to="/page/admin/update">Atualizar senha</Link>
                 </div>
                 <button onClick={logout} type="button">
@@ -40,9 +41,15 @@ export default function Admin(){
                     <strong>Serviço:</strong>
                     <p>Segurança</p>
 
+                    <Link to="/page/admin/company/detail">
+                        Ver detalhes
+                        <FiArrowRight size={18} color="#1393f6"/>
+                    </Link>
+
                     <button onClick={deleteCompany} type="button">
                         <BsTrash size={18} color="#1393f6"/>
                     </button>
+
                 </li>   
                 <li>
                     <strong>Empresa:</strong>
@@ -51,9 +58,15 @@ export default function Admin(){
                     <strong>Serviço:</strong>
                     <p>Segurança</p>
 
+                    <Link to="/page/admin/company/detail">
+                        Ver detalhes
+                        <FiArrowRight size={18} color="#1393f6"/>
+                    </Link>
+
                     <button onClick={deleteCompany} type="button">
                         <BsTrash size={18} color="#1393f6"/>
                     </button>
+
                 </li> 
                 <li>
                     <strong>Empresa:</strong>
@@ -62,9 +75,15 @@ export default function Admin(){
                     <strong>Serviço:</strong>
                     <p>Segurança</p>
 
+                    <Link to="/page/admin/company/detail">
+                        Ver detalhes
+                        <FiArrowRight size={18} color="#1393f6"/>
+                    </Link>
+
                     <button onClick={deleteCompany} type="button">
                         <BsTrash size={18} color="#1393f6"/>
                     </button>
+
                 </li> 
                 <li>
                     <strong>Empresa:</strong>
@@ -73,10 +92,50 @@ export default function Admin(){
                     <strong>Serviço:</strong>
                     <p>Segurança</p>
 
+                    <Link to="/page/admin/company/detail">
+                        Ver detalhes
+                        <FiArrowRight size={18} color="#1393f6"/>
+                    </Link>
+
                     <button onClick={deleteCompany} type="button">
                         <BsTrash size={18} color="#1393f6"/>
                     </button>
-                </li>         
+
+                </li> 
+                <li>
+                    <strong>Empresa:</strong>
+                    <p>Unforte Vigilância</p>
+
+                    <strong>Serviço:</strong>
+                    <p>Segurança</p>                  
+
+                    <button onClick={deleteCompany} type="button">
+                        <BsTrash size={18} color="#1393f6"/>
+                    </button>
+                    
+                    <Link to="/page/admin/company/detail">
+                        Ver detalhes
+                        <FiArrowRight size={18} color="#1393f6"/>
+                    </Link>
+
+                </li> 
+                <li>
+                    <strong>Empresa:</strong>
+                    <p>Unforte Vigilância</p>
+
+                    <strong>Serviço:</strong>
+                    <p>Segurança</p>
+
+                    <Link to="/page/admin/company/detail">
+                        Ver detalhes
+                        <FiArrowRight size={18} color="#1393f6"/>
+                    </Link>
+
+                    <button onClick={deleteCompany} type="button">
+                        <BsTrash size={18} color="#1393f6"/>
+                    </button>
+
+                </li>                     
             </ul>
         </div>
     );
