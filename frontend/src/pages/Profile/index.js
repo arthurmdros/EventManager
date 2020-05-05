@@ -1,15 +1,31 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {BsPower, BsTrash} from "react-icons/bs";
 import {FiArrowRight} from "react-icons/fi";
 import {Link, useHistory} from 'react-router-dom';
 
+import api from '../../services/api';
 import logo from '../../assets/logo.png';
 import './styles.css';
 
 export default function Profile(){
+    const [events, setEvents] = useState([]);
+
     const navigation = useHistory();
+    const user_id = localStorage.getItem('user_id');
+    const user_name = localStorage.getItem('user_name');
+
+    useEffect(() => {
+        api.get('/user/profile', {
+            headers: {
+                Authorization: user_id,
+            }
+        }).then(response => {
+            setEvents(response.data);
+        })
+    }, [user_id]);
 
     function logout(){
+        localStorage.clear();
         navigation.push('/page/login');
     }
 
@@ -21,7 +37,7 @@ export default function Profile(){
         <div className="profileContainer">
             <header>
                 <img src={logo} alt="Event Manager"/>
-                <span>Bem vindo, Fulano de tal</span>
+                <span>Bem vindo, {user_name}</span>
                 <div>
                     <Link to="/page/user/newevent">Cadastrar evento</Link>                    
                     <Link to="/page/user/profile/update">Atualizar perfil</Link>
@@ -35,96 +51,23 @@ export default function Profile(){
             <h1>Eventos</h1>
 
             <ul>
-                <li>
-                    <strong>Evento:</strong>
-                    <p>LiquidSky</p>
+                {events.map(evento => (
+                    <li key={evento.id}>
+                        <strong>Evento:</strong>
+                        <p>{evento.title}</p>
 
-                    <strong>Tipo evento:</strong>
-                    <p>Festa rave</p>
+                        <strong>Tipo evento:</strong>
+                        <p>{evento.event}</p>
 
-                    <button onClick={deleteEvent} type="button">
-                        <BsTrash size={18} color="#1393f6"/>
-                    </button>
-                    <Link to="/page/user/event/detail">
-                        Ver detalhes
-                        <FiArrowRight size={16} color="#1393f6"/>
-                    </Link>
-                </li>   
-                <li>
-                    <strong>Evento:</strong>
-                    <p>LiquidSky</p>
-
-                    <strong>Tipo evento:</strong>
-                    <p>Festa rave</p>
-
-                    <button onClick={deleteEvent} type="button">
-                        <BsTrash size={18} color="#1393f6"/>
-                    </button>
-                    <Link to="/page/user/event/detail">
-                        Ver detalhes
-                        <FiArrowRight size={16} color="#1393f6"/>
-                    </Link>
-                </li> 
-                <li>
-                    <strong>Evento:</strong>
-                    <p>LiquidSky</p>
-
-                    <strong>Tipo evento:</strong>
-                    <p>Festa rave</p>
-
-                    <button onClick={deleteEvent} type="button">
-                        <BsTrash size={18} color="#1393f6"/>
-                    </button>
-                    <Link to="/page/user/event/detail">
-                        Ver detalhes
-                        <FiArrowRight size={16} color="#1393f6"/>
-                    </Link>
-                </li> 
-                <li>
-                    <strong>Evento:</strong>
-                    <p>LiquidSky</p>
-
-                    <strong>Tipo evento:</strong>
-                    <p>Festa rave</p>
-
-                    <button onClick={deleteEvent} type="button">
-                        <BsTrash size={18} color="#1393f6"/>
-                    </button>
-                    <Link to="/page/user/event/detail">
-                        Ver detalhes
-                        <FiArrowRight size={16} color="#1393f6"/>
-                    </Link>
-                </li>         
-                <li>
-                    <strong>Evento:</strong>
-                    <p>LiquidSky</p>
-
-                    <strong>Tipo evento:</strong>
-                    <p>Festa rave</p>
-
-                    <button onClick={deleteEvent} type="button">
-                        <BsTrash size={18} color="#1393f6"/>
-                    </button>
-                    <Link to="/page/user/event/detail">
-                        Ver detalhes
-                        <FiArrowRight size={16} color="#1393f6"/>
-                    </Link>
-                </li>      
-                <li>
-                    <strong>Evento:</strong>
-                    <p>LiquidSky</p>
-
-                    <strong>Tipo evento:</strong>
-                    <p>Festa rave</p>
-
-                    <button onClick={deleteEvent} type="button">
-                        <BsTrash size={18} color="#1393f6"/>
-                    </button>
-                    <Link to="/page/user/event/detail">
-                        Ver detalhes
-                        <FiArrowRight size={16} color="#1393f6"/>
-                    </Link>
-                </li>      
+                        <button onClick={deleteEvent} type="button">
+                            <BsTrash size={18} color="#1393f6"/>
+                        </button>
+                        <Link to="/page/user/event/detail">
+                            Ver detalhes
+                            <FiArrowRight size={16} color="#1393f6"/>
+                        </Link>
+                    </li> 
+                ))}                                  
             </ul>
         </div>
     );
