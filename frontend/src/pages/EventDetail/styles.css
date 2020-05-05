@@ -1,4 +1,103 @@
-h1{
-    font-size: 16px;
+.event-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    margin: auto;
+}
+
+
+.event-container .content{
+    width: 100%;
+    padding: 40px;
+    background: #1393f6;
+    border-radius: 8px;
+    display: flex;
+    margin-left: 80px;
+}
+
+.event-container .content section{
+    width: 100%;
+    max-width: 380px;
+}
+
+.event-container .content section h1{
+    margin: 50px 0 20px;
+    font-size: 32px;    
     color: #FFF;
+}
+
+.event-container .content section p {
+    font-size: 18px;
+    color: #FFF;
+    line-height: 32px;
+}
+
+.event-container ul {
+    display: flex;
+    width: 50%;
+    list-style: none;
+    margin: auto;
+    margin-top: 60px;
+    margin-right: 0px;
+}
+
+.event-container ul li{
+    background: #FFF;
+    padding: 18px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+}
+
+.event-container ul li button{
+    position: absolute;
+    right: 4px;
+    top: 10px;
+    border: 0;
+    width: 10%;
+}
+
+.event-container ul li button:hover{
+    opacity: 0.8;
+}
+
+.event-container ul li strong{
+    display: block;
+    margin-bottom: 10px;
+    color: #41414d;    
+}
+
+.event-container ul li p + strong{
+    margin-top: 20px;
+}
+
+.event-container ul li p{
+    color: #41414d;
+    line-height: 21px;
+    font-size: 16px;
+}
+
+.event-container  ul li a {
+    width: 50%;
+    color: #41414d;
+    font-size: 16px;
+    margin-top: 15px;    
+  }
+
+.event-container .content .container-date, .container-time {
+    display: flex;          
+    justify-content: space-between;    
+    margin-bottom: 8px;
+}
+
+.event-container .content .titles{    
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.event-container .content .titles strong{    
+    font-size: 14px;
+    color: #41414d;
+    line-height: 21px;
 }
