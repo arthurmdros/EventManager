@@ -68,7 +68,7 @@
     width: 80%;
 }
 
-.profileContainer ul li button{
+.profileContainer ul li .button-delete{
     position: absolute;
     right: 4px;
     top: 10px;
@@ -96,9 +96,15 @@
     font-size: 16px;
 }
 
-.profileContainer  ul li a {
-    width: 50%;
+.profileContainer  ul li .detail-link {    
     color: #41414d;
     font-size: 16px;
-    margin-top: 20px;
-  }
+    margin-top: 10px;
+    display: flex;
+    align-items: center;        
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;    
+    width: 50%;
+    margin-bottom: 0px;
+}
