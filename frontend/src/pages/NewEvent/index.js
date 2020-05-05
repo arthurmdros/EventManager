@@ -57,7 +57,7 @@ export default function NewEvent(){
                             selected={starTime}
                             onChange={date => setStartTime(date)}
                             showTimeSelect
-                            showTimeSelectOnly                            
+                            showTimeSelectOnly                               
                             timeIntervals={30}
                             timeCaption="Time"
                             dateFormat="h:mm a"                                

@@ -70,6 +70,15 @@
     margin-left: 10px;    
 }
 
+.newEvent-container .content .container-time input{
+    width: 60%;
+    margin-right: 40px;
+}
+
+.newEvent-container .content .container-date input{    
+    margin-right: 10px;
+}
+
 .newEvent-container .content .titles{    
     display: flex;
     justify-content: space-between;
