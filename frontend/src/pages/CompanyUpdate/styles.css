@@ -1,4 +1,58 @@
-h1{
+.companyupdate-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 90vh;
+    margin-left: 200px;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+}
+
+.companyupdate-container .content{
+    width: 100%;
+    padding: 60px;
+    background: #1393f6;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.companyupdate-container .content section{
+    width: 100%;
+    max-width: 380px;
+}
+
+.companyupdate-container .content section h1{
+    margin: 40px 0 20px;
+    font-size: 32px;    
     color: #FFF;
-    font-size: 16px;
+}
+
+.companyupdate-container .content form{
+    width: 100%;
+    max-width: 450px;   
+    margin-top: 50px; 
+}
+
+.companyupdate-container .content form input{
+    margin-top: 8px;
+}
+
+.companyupdate-container .content form .btnForm{
+    margin-top: 30px;
+}
+
+.companyupdate-container .content form h1{
+    color: #FFF;
+    margin-top: 8px;
+}
+
+.companyupdate-container .content form .input-group{
+    display: flex;
+}
+
+.companyupdate-container .content form .input-group input + input{
+    margin-left: 8px;
 }
