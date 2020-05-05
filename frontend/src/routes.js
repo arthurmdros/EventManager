@@ -12,6 +12,7 @@ import UserUpdate from './pages/UserUpdate';
 import CompanyDetail from './pages/CompanyDetail';
 import EventDetail from './pages/EventDetail';
 import CompanyUpdate from './pages/CompanyUpdate';
+import EventUpdate from './pages/EventUpdate';
 
 export default function Routes(){
     return(
@@ -29,6 +30,7 @@ export default function Routes(){
                 <Route path="/page/admin/company/detail" exact component = {CompanyDetail} />
                 <Route path="/page/user/event/detail" exact component = {EventDetail} />
                 <Route path="/page/admin/company/update" exact component = {CompanyUpdate} />
+                <Route path="/page/user/event/update" exact component = {EventUpdate} />
             </Switch>
         </BrowserRouter>
     );
