@@ -29,18 +29,19 @@ export default function Login(){
                         alert('Falha no login, tente novamente');
                         reset();
                     }
-                }
-                try{
-                    const user = await api.post('user/session', data);
-                    alert(`Bem-Vindo! ${user.data.name}`);
-                    localStorage.setItem('user_id',user.data.id);
-                    localStorage.setItem('user_name',user.data.name);
-                    navigation.push('/page/user/profile');
-                    reset();
-                }catch(err){
-                    alert("Falha no login, tente novamente");
-                    reset();
-                }
+                }else{
+                    try{
+                        const user = await api.post('user/session', data);
+                        alert(`Bem-Vindo! ${user.data.name}`);
+                        localStorage.setItem('user_id',user.data.id);
+                        localStorage.setItem('user_name',user.data.name);
+                        navigation.push('/page/user/profile');
+                        reset();
+                    }catch(err){
+                        alert("Falha no login, tente novamente");
+                        reset();
+                    }
+                }                
             }else{
                 alert('Campo senha deve ter no mínimo 8 caracteres.');                
             }
