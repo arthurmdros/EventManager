@@ -4,7 +4,7 @@ import {Link, useHistory} from 'react-router-dom';
 
 import './styles.css';
 
-
+import api from '../../services/api';
 import Input from '../component/input';
 import logo from '../../assets/logo.png';
 
@@ -12,15 +12,41 @@ export default function Login(){
     const formRef = useRef(null);
     const navigation = useHistory();
 
-    function handleSubmit(data,{reset}){
-        console.log(data);
-        reset();
-        if(data.login === "admin"){
-            navigation.push('/page/admin/profile');
+    async function login(data,{reset}){
+        if(data.login === "" && data.password === ""){
+            alert('Informe os campos obrigatórios.')            
+        }else{
+            if(data.password.length >= 8){
+                if(data.login === "admin"){
+                    try{                    
+                        const admin = await api.post('admin/session', data);
+                        alert(`Bem-Vindo! ${admin.data.login}`);
+                        localStorage.setItem('admin_id',admin.data.id);
+                        localStorage.setItem('login',admin.data.login);
+                        navigation.push('/page/admin/profile');
+                        reset();
+                    }catch(err){
+                        alert('Falha no login, tente novamente');
+                        reset();
+                    }
+                }
+                try{
+                    const user = await api.post('user/session', data);
+                    alert(`Bem-Vindo! ${user.data.name}`);
+                    localStorage.setItem('user_id',user.data.id);
+                    localStorage.setItem('user_name',user.data.name);
+                    navigation.push('/page/user/profile');
+                    reset();
+                }catch(err){
+                    alert("Falha no login, tente novamente");
+                    reset();
+                }
+            }else{
+                alert('Campo senha deve ter no mínimo 8 caracteres.');                
+            }
         }
-        else if(data.login === "usuario"){
-            navigation.push('/page/user/profile')
-        }
+        
+        
     }
     
 
@@ -29,7 +55,7 @@ export default function Login(){
             <section className="loginForm">            
                 <img src={logo} alt="Event Manager"/>                            
                 
-                <Form ref={formRef} onSubmit={handleSubmit}>
+                <Form ref={formRef} onSubmit={login}>
                     <h1>E-mail:</h1>
                     <Input
                         name="login"
