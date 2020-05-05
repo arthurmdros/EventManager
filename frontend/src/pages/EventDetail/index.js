@@ -1,12 +1,16 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link,useLocation} from "react-router-dom";
 import {FiArrowLeft, FiEdit} from 'react-icons/fi';
 import {BsTrash} from 'react-icons/bs';
 
 import logo from "../../assets/logo.png";
 import './styles.css';
 
-export default function EventDetail(){
+export default function EventDetail(){    
+    const route = useLocation();
+    const item = route.state;    
+    const user_id = item.user_id;
+        
     function deleteEvent(){
         alert('Deletar evento');        
     }
@@ -27,10 +31,10 @@ export default function EventDetail(){
                 <ul>
                     <li>
                         <strong>Evento:</strong>
-                        <p>LiquidSky</p>
+                        <p>{item.title}</p>
 
                         <strong>Descrição:</strong>
-                        <p>Festa de música eletrônica com a participação de atrações exclusivas.</p>
+                        <p>{item.description}</p>
                         
                         <section className="titles">
                             <strong>Inicia dia:</strong>                        
@@ -38,8 +42,8 @@ export default function EventDetail(){
                         </section>
 
                         <div className = "container-date">
-                            <p>12/10/2020</p>
-                            <p>13/10/2020</p>
+                            <p>{item.start_date}</p>
+                            <p>{item.end_date}</p>
                         </div>
 
                         <section className="titles">
@@ -48,12 +52,12 @@ export default function EventDetail(){
                         </section>
                         
                         <div className = "container-time">
-                            <p>10:00 AM</p>                        
-                            <p>3:00 AM</p>
+                            <p>{item.start_time}</p>                        
+                            <p>{item.end_time}</p>
                         </div>
 
                         <strong>Tipo:</strong>
-                        <p>Música</p>
+                        <p>{item.event}</p>
 
                         <Link to="/page/user/event/update">
                             Atualizar informações 
