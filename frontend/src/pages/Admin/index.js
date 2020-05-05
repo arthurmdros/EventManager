@@ -29,6 +29,10 @@ export default function Admin(){
         navigation.push('/page/login');
     }
 
+    function navigateToDetail(company){
+        navigation.push('/page/admin/company/detail', company);
+    }
+
     function deleteCompany(){
         alert('Deletar empresa');
     }
@@ -58,12 +62,12 @@ export default function Admin(){
                         <strong>Serviço:</strong>
                         <p>{company.service}</p>
 
-                        <Link to="/page/admin/company/detail">
+                        <button className="detail-link" onClick={() => navigateToDetail(company)} type="button">
                             Ver detalhes
                             <FiArrowRight size={18} color="#1393f6"/>
-                        </Link>
+                        </button>
 
-                        <button onClick={deleteCompany} type="button">
+                        <button className="button-delete" onClick={deleteCompany} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
 
