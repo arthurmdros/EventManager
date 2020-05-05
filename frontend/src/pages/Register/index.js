@@ -4,6 +4,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory} from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
+import api from '../../services/api';
 import './styles.css';
 import Input from '../component/input';
 
@@ -11,10 +12,24 @@ export default function Register(){
     const navigation = useHistory();
     const formRef = useRef();
     
-    function handleSubmit(data, {reset}){
-        console.log(data);
-        reset();
-        navigation.push('/page/login');
+    async function register(data, {reset}){
+        if(data.mail === "" && data.password === ""){
+            alert("Campo e-mail e senha são obrigatórios para o login.");
+        }else{
+            if(data.password.length >= 8){
+                try{
+                    await api.post('/user/create', data);
+                    alert('Registro concluído.');
+                    navigation.push('/page/login');
+                }catch(err){
+                    alert('Usuário informado já existe');
+                    reset();
+                }
+            }else{
+                alert('Campo senha deve ter no mínimo 8 caracteres');                
+            }
+        }                        
+            
     }
 
     return(
@@ -30,7 +45,7 @@ export default function Register(){
                         Já possuo registro                
                     </Link>
                 </section>            
-            <Form ref={formRef} onSubmit={handleSubmit}>
+            <Form ref={formRef} onSubmit={register}>
                 <h1>E-Mail:</h1>
                 <Input
                     name="mail"
@@ -56,7 +71,6 @@ export default function Register(){
                     name="company"
                     type="company"
                 />
-
                 <button className="btnForm" onPress={() => formRef.current.submitForm()}>
                     Registrar
                 </button>
