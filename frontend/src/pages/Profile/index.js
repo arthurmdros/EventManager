@@ -33,6 +33,10 @@ export default function Profile(){
         alert('Deletar evento');
     }
 
+    function navigateToDetail(evento){
+        navigation.push('/page/user/event/detail', evento);
+    }
+
     return(
         <div className="profileContainer">
             <header>
@@ -59,13 +63,13 @@ export default function Profile(){
                         <strong>Tipo evento:</strong>
                         <p>{evento.event}</p>
 
-                        <button onClick={deleteEvent} type="button">
+                        <button className="button-delete" onClick={deleteEvent} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
-                        <Link to="/page/user/event/detail">
+                        <button className="detail-link" onClick={() => navigateToDetail(evento)} type="button">
                             Ver detalhes
                             <FiArrowRight size={16} color="#1393f6"/>
-                        </Link>
+                        </button>
                     </li> 
                 ))}                                  
             </ul>
