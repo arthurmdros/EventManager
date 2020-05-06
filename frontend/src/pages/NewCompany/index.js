@@ -4,17 +4,34 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Form } from "@unform/web";
 
 import './styles.css';
+import api from '../../services/api';
 import logo from '../../assets/logo.png';
 import Input from '../component/input';
 
 export default function NewCompany(){
     const formRef = useRef();
-    const navigation = useHistory();
+    const navigation = useHistory();    
+    
+    const admin_id = localStorage.getItem('admin_id');    
+    
 
-    function handleSubmit(data, {reset}){
-        console.log(data);
-        reset();
-        navigation.push('/page/admin/profile');
+    async function handleSubmit(data, {reset}){
+        if(data.name === ""){
+            alert("Campo nome é obrigatório");            
+        }else{
+            try{
+                await api.post('company/create', data, {
+                    headers: {
+                        Authorization: admin_id,
+                    }
+                });
+                alert('Salvo com sucesso!');
+                navigation.push('/page/admin/profile');
+            }catch(err){
+                reset();
+                alert('Erro ao cadastrar, tente novamente');
+            }
+        }
     }
 
     return(
