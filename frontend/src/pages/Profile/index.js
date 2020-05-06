@@ -29,9 +29,18 @@ export default function Profile(){
         navigation.push('/page/login');
     }
 
-    function deleteEvent(){
-        alert('Deletar evento');
-    }
+    async function deleteEvent(id){
+        try{
+            await api.delete(`/event/delete/${id}`, {
+                headers:{
+                    Authorization: user_id,
+                }
+            })
+                setEvents(events.filter(evento => evento.id !== id));
+            }catch(err){
+                alert('Erro ao deletar evento, tente novamente.');
+            }
+    }    
 
     function navigateToDetail(evento){
         navigation.push('/page/user/event/detail', evento);
@@ -63,7 +72,7 @@ export default function Profile(){
                         <strong>Tipo evento:</strong>
                         <p>{evento.event}</p>
 
-                        <button className="button-delete" onClick={deleteEvent} type="button">
+                        <button className="button-delete" onClick={() => deleteEvent(evento.id)} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
                         <button className="detail-link" onClick={() => navigateToDetail(evento)} type="button">
