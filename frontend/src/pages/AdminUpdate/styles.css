@@ -1,7 +1,7 @@
 .adminUpdateContainer {
     width: 100%;
     max-width: 1120px;
-    height: 90vh;
+    height: 70vh;
     margin-left: 200px;
     display: flex;    
     align-items: center;
@@ -39,7 +39,7 @@
 .adminUpdateContainer .content form{
     width: 100%;
     max-width: 450px;   
-    margin-top: 120px; 
+    margin-top: 240px; 
 }
 
 .adminUpdateContainer .content form input{
