@@ -1,18 +1,29 @@
 import React from "react";
-import {Link,useLocation} from "react-router-dom";
+import {Link,useLocation, useHistory} from "react-router-dom";
 import {FiArrowLeft, FiEdit} from 'react-icons/fi';
 import {BsTrash} from 'react-icons/bs';
 
+import api from '../../services/api';
 import logo from "../../assets/logo.png";
 import './styles.css';
 
-export default function EventDetail(){    
+export default function EventDetail(){   
+    const navigation = useHistory();
     const route = useLocation();
     const item = route.state;    
     const user_id = item.user_id;
         
-    function deleteEvent(){
-        alert('Deletar evento');        
+    async function deleteEvent(id){
+        try{
+            await api.delete(`/event/delete/${id}`, {
+                headers:{
+                    Authorization: user_id,
+                }
+            })                
+                navigation.push('/page/user/profile');
+            }catch(err){
+                alert('Erro ao deletar evento, tente novamente.');
+            }
     }
 
     return(
@@ -63,7 +74,7 @@ export default function EventDetail(){
                             Atualizar informações 
                             <FiEdit size={16} color="#1393f6"/>
                         </Link>
-                        <button onClick={deleteEvent} type="button">
+                        <button onClick={() => deleteEvent(item.id)} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
                     </li>
