@@ -33,8 +33,17 @@ export default function Admin(){
         navigation.push('/page/admin/company/detail', company);
     }
 
-    function deleteCompany(){
-        alert('Deletar empresa');
+    async function deleteCompany(id){
+        try{
+            await api.delete(`/company/delete/${id}`, {
+                headers:{
+                    Authorization: admin_id,
+                }
+            })                
+            setCompanies(companies.filter(company => company.id !== id));             
+            }catch(err){
+                alert('Erro ao deletar empresa, tente novamente.');
+            }
     }
 
     return(
@@ -67,7 +76,7 @@ export default function Admin(){
                             <FiArrowRight size={18} color="#1393f6"/>
                         </button>
 
-                        <button className="button-delete" onClick={deleteCompany} type="button">
+                        <button className="button-delete" onClick={() => deleteCompany(company.id)} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
 
