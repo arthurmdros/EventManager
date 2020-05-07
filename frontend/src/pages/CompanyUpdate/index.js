@@ -1,20 +1,41 @@
 import React, { useRef } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Form } from "@unform/web";
 
 import './styles.css';
+import api from '../../services/api';
 import logo from '../../assets/logo.png';
 import Input from '../component/input';
 
 export default function CompanyUpdate(){
     const formRef = useRef();
     const navigation = useHistory();
+    const route = useLocation();
+    const item = route.state;        
+    const admin_id = item.admin_id;         
 
-    function handleSubmit(data, {reset}){
-        console.log(data);
-        reset();
-        navigation.push('/page/admin/profile');
+    async function handleSubmit(data, {reset}){
+        if(data.name === ""){
+            alert("Campo nome é obrigatório");            
+        }else{
+            try{
+                await api.put(`company/update/${item.id}`, data, {
+                    headers: {
+                        Authorization: admin_id,
+                    }
+                });
+                alert('Atualizado com sucesso!');
+                navigation.push('/page/admin/profile');
+            }catch(err){
+                reset();
+                alert('Erro ao atualizar, tente novamente');
+            }
+        }
+    }
+
+    function navigateToDetail(item){
+        navigation.push('/page/admin/company/detail', item);
     }
 
     return(
@@ -22,11 +43,11 @@ export default function CompanyUpdate(){
             <div className="content">
                 <section>
                     <img src={logo} alt="Event Manager"/>
-                    <h1>Atualizar informações</h1>                    
-                    <Link to="/page/admin/company/detail">
+                    <h1>Atualizar informações</h1>                                    
+                    <button className="detail-link" onClick={() => navigateToDetail(item)} type="button">
                         <FiArrowLeft size={16} color="#FFF"/>
                         Voltar
-                    </Link>
+                    </button>
                 </section>
 
                 <Form ref={formRef} onSubmit={handleSubmit}> 
