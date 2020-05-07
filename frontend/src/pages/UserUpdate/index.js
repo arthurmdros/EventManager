@@ -3,6 +3,7 @@ import { Form } from '@unform/web';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory} from 'react-router-dom';
 
+import api from '../../services/api';
 import logo from '../../assets/logo.png';
 import './styles.css';
 import Input from '../component/input';
@@ -11,10 +12,25 @@ export default function UserUpdate(){
     const navigation = useHistory();
     const formRef = useRef();
     
-    function handleSubmit(data, {reset}){
-        console.log(data);
-        reset();
-        navigation.push('/page/user/profile');
+    const user_id = localStorage.getItem('user_id');
+    
+    async function handleSubmit(data, {reset}){
+        if(data.mail === ""){
+            alert("Campo e-mail é obrigatório");            
+        }else if(data.password.length < 8){
+            alert('Campo senha deve ter 8 caracteres.');
+        }else if(data.password !== data.confirmPassword){
+            alert('Senhas diferentes.');            
+        }else{
+            try{
+                await api.put(`/user/account/update/${user_id}`, data);
+                alert('Atualizado com sucesso!');
+                navigation.push('/page/user/profile');
+            }catch(err){
+                reset();
+                alert('Erro ao atualizar, tente novamente');
+            }
+        }
     }
 
     return(
@@ -34,12 +50,7 @@ export default function UserUpdate(){
                 <Input
                     name="mail"
                     type="mail"
-                />
-                <h1>Senha atual:</h1>
-                <Input
-                    name="password"
-                    type="password"
-                />
+                />                
                 <h1>Nova senha:</h1>
                 <Input
                     name="password"
@@ -47,7 +58,7 @@ export default function UserUpdate(){
                 />
                 <h1>Confirmar senha:</h1>
                 <Input
-                    name="password"
+                    name="confirmPassword"
                     type="password"
                 />
 
