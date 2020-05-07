@@ -26,6 +26,10 @@ export default function CompanyDetail(){
             }
     }
 
+    function navigateToUpdate(item){
+        navigation.push('/page/admin/company/update', item);
+    }
+
     return(
         <div className="company-container">
             <div className="content">
@@ -53,11 +57,13 @@ export default function CompanyDetail(){
                         <strong>Telefone:</strong>
                         <p>{item.phone}</p>
 
-                        <Link to="/page/admin/company/update">
+                        <button className="update-link" onClick={() => navigateToUpdate(item)} type="button">
                             Atualizar informações 
-                            <FiEdit size={16} color="#1393f6"/>
-                        </Link>
-                        <button onClick={() => deleteCompany(item.id)} type="button">
+                            <FiEdit size={16} color="#1393f6"/>                    
+                        </button>
+                        
+                            
+                        <button className="delete-button" onClick={() => deleteCompany(item.id)} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
                     </li>
