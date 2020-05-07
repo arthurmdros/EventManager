@@ -33,20 +33,32 @@ module.exports = {
          return res.status(204).send();
      },
 
-     async update(req,res){
+     async updateProfile(req,res){
          const { id } = req.params;         
 
-         const {mail,password,name, phone,company} = req.body;
+         const {name, phone,company} = req.body;
 
          await connection('user').where('id', id)
-            .update({
-                mail,
-                password,
+            .update({                
                 name,
                 phone,
                 company,                
             })
 
         return res.json({ id });
+     },
+
+     async updateAccount(req,res){         
+        const { id } = req.params;         
+
+        const {mail, password, confirmPassword} = req.body;
+
+        await connection('user').where('id', id)
+           .update({    
+               mail,
+               password               
+           })
+
+       return res.json({ id });
      }
 }
