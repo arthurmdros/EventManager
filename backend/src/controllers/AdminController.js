@@ -33,7 +33,7 @@ module.exports = {
     async update (req,res) {
         const { id } = req.params;
 
-        const {password} = req.body;
+        const {password, confirmPassword} = req.body;
 
         await connection('admin').where('id', id)
         .update({
