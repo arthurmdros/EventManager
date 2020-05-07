@@ -24,7 +24,8 @@ routes.put('/admin/update/:id', AdminController.update);
 
 routes.get('/user/index', UserController.index);
 routes.post('/user/create', UserController.create);
-routes.put('/user/update/:id', UserController.update);
+routes.put('/user/profile/update/:id', UserController.updateProfile);
+routes.put('/user/account/update/:id', UserController.updateAccount);
 routes.delete('/user/delete/:id', UserController.delete);
 
 
