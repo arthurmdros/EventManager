@@ -1,7 +1,7 @@
 .adminUpdateContainer {
     width: 100%;
     max-width: 1120px;
-    height: 70vh;
+    height: 90vh;
     margin-left: 200px;
     display: flex;    
     align-items: center;
@@ -30,16 +30,10 @@
     color: #FFF;
 }
 
-.adminUpdateContainer .content section p {
-    font-size: 18px;
-    color: #FFF;
-    line-height: 32px;
-}
-
 .adminUpdateContainer .content form{
     width: 100%;
     max-width: 450px;   
-    margin-top: 240px; 
+    margin-top: 190px; 
 }
 
 .adminUpdateContainer .content form input{
