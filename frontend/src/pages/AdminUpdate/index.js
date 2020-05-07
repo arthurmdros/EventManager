@@ -13,8 +13,12 @@ export default function AdminUpdate(){
     const formRef = useRef();
     const id = localStorage.getItem('admin_id');    
 
-    async function handleSubmit(data, {reset}){
-        if(data.password.length >= 8){                
+    async function handleSubmit(data, {reset}){        
+        if(data.password.length < 8){
+            alert('Campo senha deve ter 8 caracteres.');
+        }else if(data.password !== data.confirmPassword){
+            alert('Senhas diferentes.');            
+        }else{
             try{
                 await api.put(`/admin/update/${id}`, data);
                 alert('Senha alterada.');
@@ -22,10 +26,7 @@ export default function AdminUpdate(){
             }catch(err){
                 alert('Não foi possível alterar a senha.');
                 navigation.push('/page/admin/profile');
-            }         
-        }else{
-            alert('Senha deve conter 8 caracteres.');
-            reset();
+            }  
         }
         
     }
@@ -46,6 +47,11 @@ export default function AdminUpdate(){
                 <h1>Nova senha:</h1>
                 <Input
                     name="password"
+                    type="password"
+                />
+                <h1>Confirmar senha:</h1>
+                <Input
+                    name="confirmPassword"
                     type="password"
                 />
                 <button className="btnForm" onPress={() => formRef.current.submitForm()}>
