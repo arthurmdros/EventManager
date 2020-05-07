@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef} from 'react';
 import { Form } from '@unform/web';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory} from 'react-router-dom';
