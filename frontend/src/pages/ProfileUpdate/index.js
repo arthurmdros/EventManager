@@ -1,8 +1,9 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import { Form } from '@unform/web';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory} from 'react-router-dom';
 
+import api from '../../services/api';
 import logo from '../../assets/logo.png';
 import './styles.css';
 import Input from '../component/input';
@@ -10,11 +11,22 @@ import Input from '../component/input';
 export default function ProfileUpdate(){
     const navigation = useHistory();
     const formRef = useRef();
+    const user_id = localStorage.getItem('user_id');
     
-    function handleSubmit(data, {reset}){
-        console.log(data);
-        reset();
-        navigation.push('/page/user/profile');
+    async function handleSubmit(data, {reset}){
+        if(data.name === ""){
+            alert("Campo nome é obrigatório");            
+        }else{            
+            try{
+                await api.put(`/user/profile/update/${user_id}`, data);
+                alert('Atualizado com sucesso!');
+                localStorage.setItem('user_name',data.name);
+                navigation.push('/page/user/profile');
+            }catch(err){
+                reset();
+                alert('Erro ao atualizar, tente novamente');
+            }
+        }
     }
 
     return(
