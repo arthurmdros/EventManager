@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import { Form } from '@unform/web';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory} from 'react-router-dom';
@@ -10,10 +10,17 @@ import Input from '../component/input';
 
 export default function UserUpdate(){
     const navigation = useHistory();
-    const formRef = useRef();
+    const formRef = useRef(null);
     
     const user_id = localStorage.getItem('user_id');
     
+    useEffect(() => {
+        api.get(`/user/index/data/${user_id}`)
+        .then(response => {
+            formRef.current.setData({mail: response.data.mail});            
+        });
+    }, [user_id]);
+
     async function handleSubmit(data, {reset}){
         if(data.mail === ""){
             alert("Campo e-mail é obrigatório");            

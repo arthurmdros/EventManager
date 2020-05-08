@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import { Form } from '@unform/web';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory} from 'react-router-dom';
@@ -9,10 +9,21 @@ import './styles.css';
 import Input from '../component/input';
 
 export default function ProfileUpdate(){
+    
     const navigation = useHistory();
-    const formRef = useRef();
+    const formRef = useRef(null);
     const user_id = localStorage.getItem('user_id');
     
+    useEffect(() => {
+        api.get(`/user/index/data/${user_id}`)
+        .then(response => {
+            formRef.current.setData({name: response.data.name});
+            formRef.current.setData({phone: response.data.phone});
+            formRef.current.setData({company: response.data.company});
+        });
+    }, [user_id]);
+
+
     async function handleSubmit(data, {reset}){
         if(data.name === ""){
             alert("Campo nome é obrigatório");            

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useHistory, useLocation } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Form } from "@unform/web";
@@ -9,11 +9,18 @@ import logo from '../../assets/logo.png';
 import Input from '../component/input';
 
 export default function CompanyUpdate(){
-    const formRef = useRef();
+    const formRef = useRef(null);
     const navigation = useHistory();
     const route = useLocation();
-    const item = route.state;        
-    const admin_id = item.admin_id;         
+    const item = route.state;      
+    const admin_id = item.admin_id; 
+    
+    useEffect(() => {
+        formRef.current.setData({name: item.name});
+        formRef.current.setData({service: item.service});
+        formRef.current.setData({mail: item.mail});
+        formRef.current.setData({phone: item.phone});       
+    }, [item]);
 
     async function handleSubmit(data, {reset}){
         if(data.name === ""){
