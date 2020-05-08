@@ -47,6 +47,11 @@
     width: 80%;
 }
 
+.newEvent-container .content form textarea{
+    margin-top: 8px;
+    width: 80%;
+}
+
 .newEvent-container .content form .btnForm{
     margin-top: 30px;
     margin-left: 40px;
@@ -87,4 +92,9 @@
 .newEvent-container .content .titles h1{    
     font-size: 16px;
     margin-right: 110px;
+}
+
+.newEvent-container .content form .select-input{
+    margin-top: 8px;
+    width: 80%;
 }
