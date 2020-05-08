@@ -11,17 +11,14 @@ module.exports = {
            .join('user', 'user.id', '=', 'event.user_id')
            .limit(5)
            .offset((page - 1) * 5)
-           .select([
-               'event.*',               
-               'user.company',
-           ]);
+           .select('event.*');
         
         res.header('Total-Events', count['count(*)']);
         return res.json(events)
     },
         
     async create(req,res){
-        const {title,description,start_time,end_time,start_date,end_date,event} = req.body;
+        const {title,description,selectedStartDate,selectedEndDate,selectedStartTime,selectedEndTime,selectedValue} = req.body;
         const user_id = req.headers.authorization;
 
         const id = crypto.randomBytes(4).toString('Hex');
@@ -30,11 +27,11 @@ module.exports = {
             id,
             title,
             description,
-            start_time,
-            end_time,
-            start_date,
-            end_date,
-            event,
+            selectedStartDate,            
+            selectedEndDate,
+            selectedStartTime,
+            selectedEndTime,            
+            selectedValue,
             user_id,
         });
 
@@ -63,7 +60,7 @@ module.exports = {
         const { id } = req.params;
         const user_id = req.headers.authorization;
 
-        const {title,description,start_time,end_time,start_date,end_date,event} = req.body;
+        const {title,description,selectedStartDate,selectedEndDate,selectedStartTime,selectedEndTime,selectedValue} = req.body;
         
         const evento = await connection('event')
             .where('id', id)
@@ -79,11 +76,11 @@ module.exports = {
                 id,
                 title,
                 description,
-                start_time,
-                end_time,
-                start_date,
-                end_date,
-                event,
+                selectedStartDate,            
+                selectedEndDate,
+                selectedStartTime,
+                selectedEndTime,            
+                selectedValue,
                 user_id,
             })
         return res.json({id});
