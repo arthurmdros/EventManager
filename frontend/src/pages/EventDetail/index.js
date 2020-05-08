@@ -53,8 +53,8 @@ export default function EventDetail(){
                         </section>
 
                         <div className = "container-date">
-                            <p>{item.start_date}</p>
-                            <p>{item.end_date}</p>
+                            <p>{item.selectedStartDate}</p>
+                            <p>{item.selectedEndDate}</p>
                         </div>
 
                         <section className="titles">
@@ -63,12 +63,12 @@ export default function EventDetail(){
                         </section>
                         
                         <div className = "container-time">
-                            <p>{item.start_time}</p>                        
-                            <p>{item.end_time}</p>
+                            <p>{item.selectedStartTime}</p>                        
+                            <p>{item.selectedEndTime}</p>
                         </div>
 
                         <strong>Tipo:</strong>
-                        <p>{item.event}</p>
+                        <p>{item.selectedValue}</p>
 
                         <Link to="/page/user/event/update">
                             Atualizar informações 
