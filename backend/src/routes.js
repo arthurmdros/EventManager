@@ -23,6 +23,7 @@ routes.delete('/admin/delete/:id', AdminController.delete);
 routes.put('/admin/update/:id', AdminController.update);
 
 routes.get('/user/index', UserController.index);
+routes.get('/user/index/data/:id', UserController.selectUser);
 routes.post('/user/create', UserController.create);
 routes.put('/user/profile/update/:id', UserController.updateProfile);
 routes.put('/user/account/update/:id', UserController.updateAccount);
