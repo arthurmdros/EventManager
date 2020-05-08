@@ -9,7 +9,7 @@ import logo from '../../assets/logo.png';
 import Input from '../component/input';
 
 export default function NewCompany(){
-    const formRef = useRef();
+    const formRef = useRef(null);
     const navigation = useHistory();    
     
     const admin_id = localStorage.getItem('admin_id');    

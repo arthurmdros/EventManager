@@ -20,7 +20,7 @@ export default function Profile(){
                 Authorization: user_id,
             }
         }).then(response => {
-            setEvents(response.data);
+            setEvents(response.data);            
         })
     }, [user_id]);
 

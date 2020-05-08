@@ -10,7 +10,7 @@ import Input from '../component/input';
 
 export default function AdminUpdate(){
     const navigation = useHistory();
-    const formRef = useRef();
+    const formRef = useRef(null);
     const id = localStorage.getItem('admin_id');    
 
     async function handleSubmit(data, {reset}){        

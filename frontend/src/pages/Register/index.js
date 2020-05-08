@@ -10,7 +10,7 @@ import Input from '../component/input';
 
 export default function Register(){
     const navigation = useHistory();
-    const formRef = useRef();
+    const formRef = useRef(null);
     
     async function register(data, {reset}){
         if(data.mail === "" && data.password === ""){

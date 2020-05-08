@@ -15,7 +15,7 @@ export default function NewEvent(){
     const [starTime, setStartTime] = useState(new Date());
     const [endTime, setEndTime] = useState(new Date());
     
-    const formRef = useRef();
+    const formRef = useRef(null);
     const navigation = useHistory();
 
     function handleSubmit(data, {reset}){
