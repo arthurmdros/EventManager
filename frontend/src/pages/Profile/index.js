@@ -70,7 +70,7 @@ export default function Profile(){
                         <p>{evento.title}</p>
 
                         <strong>Tipo evento:</strong>
-                        <p>{evento.event}</p>
+                        <p>{evento.selectedValue}</p>
 
                         <button className="button-delete" onClick={() => deleteEvent(evento.id)} type="button">
                             <BsTrash size={18} color="#1393f6"/>
