@@ -26,6 +26,10 @@ export default function EventDetail(){
             }
     }
 
+    function navigateToUpdate(item){
+        navigation.push('/page/user/event/update', item);
+    }
+
     return(
         <div className="event-container">
             <div className="content">
@@ -70,11 +74,12 @@ export default function EventDetail(){
                         <strong>Tipo:</strong>
                         <p>{item.selectedValue}</p>
 
-                        <Link to="/page/user/event/update">
+                        <button className="update-link" onClick={() => navigateToUpdate(item)} type="button">
                             Atualizar informações 
-                            <FiEdit size={16} color="#1393f6"/>
-                        </Link>
-                        <button onClick={() => deleteEvent(item.id)} type="button">
+                            <FiEdit size={16} color="#1393f6"/>                    
+                        </button>
+
+                        <button className = 'delete-button' onClick={() => deleteEvent(item.id)} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
                     </li>
