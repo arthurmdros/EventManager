@@ -49,7 +49,7 @@
     width: 80%;
 }
 
-.event-container ul li button{
+.event-container ul li .delete-button{
     position: absolute;
     right: 4px;
     top: 10px;
@@ -100,4 +100,17 @@
     font-size: 14px;
     color: #41414d;
     line-height: 21px;
+}
+
+.event-container ul li .update-link {    
+    color: #41414d;
+    font-size: 16px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;        
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;    
+    width: 50%;
+    margin-bottom: 0px;
 }
