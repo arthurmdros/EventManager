@@ -30,6 +30,18 @@
     color: #FFF;
 }
 
+.eventupdate-container .content section .detail-link {    
+    color: #FFF;
+    background: #1393f6;
+    font-size: 16px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;        
+    text-decoration: none;
+    font-weight: 500;  
+    width: 20%;
+    margin-bottom: 0px;
+}
 
 .eventupdate-container .content form{
     width: 100%;
@@ -82,4 +94,14 @@
 .eventupdate-container .content .titles h1{    
     font-size: 16px;
     margin-right: 110px;
+}
+
+.eventupdate-container .content form .select-input{
+    margin-top: 8px;
+    width: 80%;
+}
+
+.eventupdate-container .content form textarea{
+    margin-top: 8px;
+    width: 80%;
 }
