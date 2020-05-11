@@ -83,5 +83,17 @@ module.exports = {
         await connection('company').where('id',id).delete();
 
         return res.status(204).send();
+    }, 
+
+    async selectCompanys(req, res){        
+            const { page = 1 } = req.query;                
+    
+            const companys = await connection('company')                
+                .limit(5)
+                .offset((page - 1) * 5)
+                .select([
+                    'company.*',
+                ]);    
+            return res.json(companys);
     }
 }
