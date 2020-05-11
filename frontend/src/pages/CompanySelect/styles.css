@@ -1,4 +1,98 @@
-h1{
-    font-size: 16px;
+.select-company {
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 20px;
+    margin: auto;
+  }
+
+.select-company header {
+    display: flex;
+    align-items: center;
+}
+
+.select-company header div{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.select-company header img {
+  height: 150px;
+}
+
+.select-company header button {
+  width: 100%;
+  border-radius: 4px;
+  background: #1393f6;
+  color: #FFF;  
+  font-size: 18px;
+  font-weight: 500;
+  transition: opacity 0.2s;  
+  display: flex;
+  align-items: center;        
+  text-decoration: none;
+}
+
+.select-company h1{
+    margin-bottom: 10px;
+    margin-left: 90px;
     color: #FFF;
+    font-size: 20px;
+}
+
+.select-company ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 18px;
+    list-style: none;
+    margin-left: 80px;
+}
+
+.select-company ul li{
+    background: #FFF;
+    padding: 18px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+}
+
+.select-company ul li strong{
+    display: block;
+    margin-bottom: 10px;
+    color: #41414d;    
+}
+
+.select-company ul li p + strong{
+    margin-top: 15px;
+}
+
+.select-company ul li p{
+    color: #41414d;
+    line-height: 21px;
+    font-size: 16px;
+}
+
+.select-company  ul li .detail-link {    
+    color: #41414d;
+    font-size: 16px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;        
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;    
+    width: 50%;
+    margin-bottom: 0px;
+}
+
+.select-company ul li .button-select{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: 0;
+    width: 10%;
+}
+
+.select-company ul li button:hover{
+    opacity: 0.8;
 }
