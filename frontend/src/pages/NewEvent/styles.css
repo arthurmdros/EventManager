@@ -1,8 +1,8 @@
 .newEvent-container {
     width: 100%;
     max-width: 1120px;
-    height: 90vh;
-    margin-left: 200px;
+    height: 80vh;
+    margin-left: 150px;
     display: flex;    
     align-items: center;
     justify-content: center;
@@ -39,7 +39,7 @@
 .newEvent-container .content form{
     width: 100%;
     max-width: 450px;   
-    margin-top: 50px; 
+    margin-top: 90px; 
 }
 
 .newEvent-container .content form input{
@@ -52,9 +52,26 @@
     width: 80%;
 }
 
+.newEvent-container .content form .actions{
+    display: flex;
+    margin-top: 10px;   
+}
+
 .newEvent-container .content form .btnForm{
-    margin-top: 30px;
-    margin-left: 40px;
+    font-size: 16px;
+    width: 30%;
+    margin-left: 120px;
+}
+
+.newEvent-container .content form .btn-ticket{
+    width: 35%;
+    font-size: 16px;
+}
+
+.newEvent-container .content form .btn-company{
+    width: 35%;
+    font-size: 16px;
+    margin-left: 50px;
 }
 
 .newEvent-container .content form h1{
