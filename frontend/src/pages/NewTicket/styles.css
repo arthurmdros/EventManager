@@ -1,4 +1,68 @@
-h1{
-    font-size: 16px;
+.ticket-container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 20px;
+    margin: auto;
+  }
+
+.ticket-container header {
+    display: flex;
+    align-items: center;
+}
+
+.ticket-container header div{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.ticket-container header img {
+  height: 150px;
+}
+
+.ticket-container header button {
+  width: 100%;
+  border-radius: 4px;
+  background: #1393f6;
+  color: #FFF;  
+  font-size: 18px;
+  font-weight: 500;
+  transition: opacity 0.2s;  
+  display: flex;
+  align-items: center;        
+  text-decoration: none;
+}
+
+.ticket-container h1{
+    margin-bottom: 10px;
+    margin-left: 70px;
     color: #FFF;
+    font-size: 20px;
+}
+
+.ticket-container .content {
+    width: 60%;
+    align-items: center;
+    margin-left: 220px;
+    margin-top: 50px;
+}
+
+.ticket-container .content form .select-input{
+    width: 60%;
+    margin-left: 100px;
+}
+
+.ticket-container .content form h1{
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.ticket-container .content form input{
+    margin-left: 100px;
+}
+
+.ticket-container .content form button{
+    margin-left: 180px;
+    margin-top: 20px;
+    width: 30%;
 }
