@@ -34,6 +34,7 @@ routes.get('/company/index', CompanyController.index);
 routes.post('/company/create', CompanyController.create);
 routes.put('/company/update/:id', CompanyController.update);
 routes.delete('/company/delete/:id', CompanyController.delete);
+routes.get('/company/all', CompanyController.selectCompanys);
 
 routes.get('/event/index', EventController.index);
 routes.post('/event/create', EventController.create);
