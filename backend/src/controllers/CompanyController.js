@@ -85,12 +85,9 @@ module.exports = {
         return res.status(204).send();
     }, 
 
-    async selectCompanys(req, res){        
-            const { page = 1 } = req.query;                
+    async selectCompanys(req, res){                                 
     
-            const companys = await connection('company')                
-                .limit(5)
-                .offset((page - 1) * 5)
+            const companys = await connection('company')                              
                 .select([
                     'company.*',
                 ]);    
