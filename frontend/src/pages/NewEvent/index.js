@@ -12,7 +12,6 @@ import logo from '../../assets/logo.png';
 
 export default function NewEvent(){    
     const navigation = useHistory();
-
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [startDate, setStartDate] = useState(new Date());
@@ -50,18 +49,22 @@ export default function NewEvent(){
             selectedEndTime,
             selectedValue
         };
-        
-        try {
-            await api.post('event/create', data, {
-                headers:{
-                    Authorization: user_id,
-                }
-            })
+        if(data.title === ""){
+            alert('Nome do evento é obrigatório.');
+        }else{
+            try {
+                await api.post('event/create', data, {
+                    headers:{
+                        Authorization: user_id,
+                    }
+                })
 
-            navigation.push('/page/user/profile');
-        }catch(err){
-            alert('Erro ao cadastrar evento, tente novamente.');
+                navigation.push('/page/user/profile');
+            }catch(err){
+                alert('Erro ao cadastrar evento, tente novamente.');
+            }
         }
+        
     }
   
     function handleChange (e){
@@ -110,8 +113,9 @@ export default function NewEvent(){
                         Voltar para home
                     </Link>
                 </section>
-
+                
                 <form onSubmit={createEvent}>
+                
                     <h1>Evento:</h1>
                     <input                         
                         value={title}
@@ -173,9 +177,13 @@ export default function NewEvent(){
                             dateFormat="dd/MM/yyyy"
                             value={endDate}    
                         />
-                    </div>                    
+                    </div>   
+                    <div className='actions'>
+                        <button className='btn-ticket' onClick={() => navigation.push('/page/user/newevent/ticket')} type="button">Adicionar ingresso</button>             
+                        <button className='btn-company' onClick={() => navigation.push('/page/user/newevent/company')} type="button">Adicionar empresa</button>                                     
+                    </div>
                     <button className="btnForm" type="submit">Cadastrar</button>
-                </form>
+                </form>                
             </div>
         </div>
     );
