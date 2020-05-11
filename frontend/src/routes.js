@@ -14,6 +14,7 @@ import EventDetail from './pages/EventDetail';
 import CompanyUpdate from './pages/CompanyUpdate';
 import EventUpdate from './pages/EventUpdate';
 import SelectCompany from './pages/CompanySelect';
+import NewTicket from './pages/NewTicket';
 
 export default function Routes(){
     return(
@@ -33,6 +34,7 @@ export default function Routes(){
                 <Route path="/page/admin/company/update" exact component = {CompanyUpdate} />
                 <Route path="/page/user/event/update" exact component = {EventUpdate} />
                 <Route path="/page/user/newevent/company" exact component = {SelectCompany} />
+                <Route path="/page/user/newevent/ticket" exact component = {NewTicket} />
             </Switch>
         </BrowserRouter>
     );
