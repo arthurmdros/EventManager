@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import {useHistory } from 'react-router-dom';
+import {useHistory,useLocation } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import Select from 'react-select';
 
 import './styles.css';
 import logo from '../../assets/logo.png';
+import api from '../../services/api';
 
-
-export default function NewEvent(){    
+export default function NewEvent(){       
+    const route = useLocation();    
+    const item = route.state;  
+    const event_id  = item.id;
     const navigation = useHistory();
     const typeoptions = [
         { value: 'Gratuito', label: 'Gratuito' },
@@ -23,34 +26,42 @@ export default function NewEvent(){
         const data = { 
             type,
             value,
-            amount,       
+            amount,  
+            event_id     
         };
         
-        console.log(data);
+       if(data.type === ''){
+           alert('Um tipo de ingresso deve ser selecionado.');
+       }else{
+            try{
+                await api.post('ticket/create', data);                 
+                alert('Ingresso adicionado com sucesso.');
+            }catch(err){
+                alert('Erro ao adicionar ingresso, tente novamente.');
+            }
+       }
     }
 
     function handleChange (e){
         setType(e.value);
-    }
-
-    
-    function navigateToBack(){
-        navigation.push("/page/user/newevent");
-    }
+        if(e.value === 'Gratuito'){
+            setValue('Grátis');
+        }
+    }    
 
     return(
         <div className="ticket-container">            
             <header>
             <img src={logo} alt="Event Manager"/>
             <div>                    
-                <button onClick={() => navigateToBack()} type="button">
+                <button onClick={() => navigation.push("/page/user/profile")} type="button">
                     <FiArrowLeft size={18} color="#FFF"/>     
                     Retornar                                               
                 </button>
             </div>
             </header>
             
-            <h1>Adicionar ingresso</h1>
+            <h1>Adicione ingressos para seu evento</h1>
 
             <div className="content">
 
