@@ -21,18 +21,13 @@ export default function Profile(){
     function navigateToDetail(company){
         navigation.push('/page/user/newevent/company/detail', company);
     }
-
     
-    function navigateToBack(){
-        navigation.push("/page/user/newevent");
-    }
-
     return(
         <div className="select-company">
             <header>
                 <img src={logo} alt="Event Manager"/>
                 <div>                    
-                    <button onClick={() => navigateToBack()} type="button">
+                    <button onClick={() => navigation.push("/page/user/profile")} type="button">
                         <FiArrowLeft size={18} color="#FFF"/>     
                         Retornar                                               
                     </button>
