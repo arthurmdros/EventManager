@@ -11,7 +11,10 @@ import logo from '../../assets/logo.png';
 
 
 export default function NewEvent(){    
-    const navigation = useHistory();
+    const navigation = useHistory();    
+    var auxTicket = 0;
+    var auxCompany = 0;
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [startDate, setStartDate] = useState(new Date());
@@ -50,16 +53,24 @@ export default function NewEvent(){
             selectedValue
         };
         if(data.title === ""){
-            alert('Nome do evento é obrigatório.');
+            alert('Nome do evento é obrigatório para cadastro, adição de ingresso ou empresa.');
         }else{
             try {
-                await api.post('event/create', data, {
+                const response = await api.post('event/create', data, {
                     headers:{
                         Authorization: user_id,
                     }
-                })
-
-                navigation.push('/page/user/profile');
+                })                    
+                if(auxTicket === 1){
+                    alert('Evento criado com sucesso, adicione ingressos para ele.');
+                    navigation.push('/page/user/newevent/ticket', response.data);
+                }else if(auxCompany === 1){
+                    alert('Evento criado com sucesso, adicione empresas para ele.');
+                    navigation.push('/page/user/newevent/company', response.data);
+                }else{
+                    alert('Evento criado com sucesso.');
+                    navigation.push('/page/user/profile');   
+                }                
             }catch(err){
                 alert('Erro ao cadastrar evento, tente novamente.');
             }
@@ -99,6 +110,16 @@ export default function NewEvent(){
         const hour = date.getHours();   
         const minute = date.getMinutes();         
         setSelectedEndTime(hour+':'+minute);     
+    }
+
+    function navigateToTicket(e){
+        auxTicket += 1;
+        createEvent(e);        
+    }
+
+    function navigateToCompany(e){
+        auxCompany += 1;
+        createEvent(e);        
     }
 
     return(
@@ -179,8 +200,8 @@ export default function NewEvent(){
                         />
                     </div>   
                     <div className='actions'>
-                        <button className='btn-ticket' onClick={() => navigation.push('/page/user/newevent/ticket')} type="button">Adicionar ingresso</button>             
-                        <button className='btn-company' onClick={() => navigation.push('/page/user/newevent/company')} type="button">Adicionar empresa</button>                                     
+                        <button className='btn-ticket' onClick={navigateToTicket} type="button">Adicionar ingresso</button>             
+                        <button className='btn-company' onClick={navigateToCompany} type="button">Adicionar empresa</button>                                     
                     </div>
                     <button className="btnForm" type="submit">Cadastrar</button>
                 </form>                
