@@ -120,12 +120,12 @@ export default function NewEvent(){
                 <form onSubmit={updateEvent}>
                     <h1>Evento:</h1>
                     <input                         
-                        value={title}
+                        value={item.title}
                         onChange={e => setTitle(e.target.value)}
                     />
                     <h1>Descrição:</h1>
                     <textarea                         
-                        value={description}
+                        value={item.description}
                         onChange={e => setDescription(e.target.value)}
                     />
                     <h1>Tipo de evento:</h1>
