@@ -7,8 +7,9 @@ import logo from '../../assets/logo.png';
 import './styles.css';
 
 export default function Profile(){
-    const [companies, setCompanies] = useState([]);
 
+    const event_id = localStorage.getItem('event_id');
+    const [companies, setCompanies] = useState([]);
     const navigation = useHistory();
 
     useEffect(() => {
@@ -21,6 +22,16 @@ export default function Profile(){
     function navigateToDetail(company){
         navigation.push('/page/user/newevent/company/detail', company);
     }
+
+    async function selectCompany(company){    
+        company.event_id = event_id;
+        try{
+            await api.put(`company/select/${company.id}`, company);                 
+            alert('Empresa selecionada com sucesso.');
+        }catch(err){
+            alert('Erro ao selecionar empresa, tente novamente.');
+        }        
+    }
     
     return(
         <div className="select-company">
@@ -29,7 +40,7 @@ export default function Profile(){
                 <div>                    
                     <button onClick={() => navigation.push("/page/user/profile")} type="button">
                         <FiArrowLeft size={18} color="#FFF"/>     
-                        Retornar                                               
+                        Home                                               
                     </button>
                 </div>
             </header>
@@ -45,7 +56,7 @@ export default function Profile(){
                     <strong>Serviço:</strong>
                     <p>{company.service}</p>
 
-                    <button className="button-select" onClick={() => alert('Emrpesa selecionada.')} type="button">
+                    <button className="button-select" onClick={() => selectCompany(company)} type="button">
                             <FiCheckCircle size={18} color="#1393f6"/>
                     </button>
                     <button className="detail-link" onClick={() => navigateToDetail(company)} type="button">
