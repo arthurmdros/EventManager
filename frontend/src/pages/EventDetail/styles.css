@@ -1,44 +1,52 @@
 .event-container {
     width: 100%;
-    max-width: 1200px;
-    padding: 0 20px;
+    max-width: 1500px;
+    padding: 0 60px;
     margin: auto;
 }
 
 
-.event-container .content{
-    width: 100%;
-    padding: 40px;
-    background: #1393f6;
-    border-radius: 8px;
+.event-container  header {
     display: flex;
-    margin-left: 80px;
+    align-items: center;
 }
 
-.event-container .content section{
-    width: 100%;
-    max-width: 380px;
+.event-container  header div{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
 }
 
-.event-container .content section h1{
-    margin: 50px 0 20px;
-    font-size: 32px;    
+.event-container  header img {
+  height: 150px;
+}
+
+.event-container  header h1 {
+    font-size: 24px;
     color: #FFF;
-}
+    margin-top: 150px;
+  }
 
-.event-container .content section p {
-    font-size: 18px;
-    color: #FFF;
-    line-height: 32px;
+.event-container  header a {
+  width: 100%;
+  border-radius: 4px;
+  background: #1393f6;
+  color: #FFF;  
+  font-size: 18px;
+  font-weight: 500;
+  transition: opacity 0.2s;  
+  display: flex;
+  align-items: center;        
+  text-decoration: none;
 }
-
 .event-container .event-info {
     display: flex;
-    width: 60%;
+    width: 90%;
     list-style: none;
     margin: auto;
-    margin-top: 60px;
-    margin-right: 0px;
+    margin-bottom: 40px;    
+    margin-top: 40px;
+    margin-left: 170px;  
 }
 
 .event-container .event-info li{
@@ -111,7 +119,7 @@
     text-decoration: none;
     font-weight: 500;
     transition: opacity 0.2s;    
-    width: 50%;
+    width: 20%;
     margin-bottom: 0px;
 }
 
@@ -141,3 +149,9 @@
     font-size: 16px;
     margin-left: 5px;
 }    
+
+.event-container .event-info li .list-company {
+    display: flex;
+    width: 100%;
+    list-style: none;
+}
