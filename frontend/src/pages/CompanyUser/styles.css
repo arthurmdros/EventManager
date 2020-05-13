@@ -1,4 +1,79 @@
-h1{
+.company-user {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 60px;
+    margin: auto;
+}
+
+
+.company-user .content{
+    width: 100%;
+    padding: 40px;
+    background: #1393f6;
+    border-radius: 8px;
+    display: flex;
+    margin-left: 80px;
+    margin-top: 80px;
+}
+
+.company-user .content section{
+    width: 100%;
+    max-width: 380px;
+}
+
+.company-user .content section h1{
+    margin: 20px 0 20px;
+    font-size: 32px;    
     color: #FFF;
+}
+
+.company-user .content section p {
+    font-size: 18px;
+    color: #FFF;
+    line-height: 32px;
+}
+
+.company-user ul {
+    display: flex;
+    width: 50%;
+    list-style: none;
+    margin: auto;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+.company-user ul li{
+    background: #FFF;
+    padding: 18px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+}
+
+.company-user ul li .button-select{
+    position: absolute;
+    right: 4px;
+    top: 10px;
+    border: 0;
+    width: 10%;
+}
+
+.company-user ul li button:hover{
+    opacity: 0.8;
+}
+
+.company-user ul li strong{
+    display: block;
+    margin-bottom: 10px;
+    color: #41414d;    
+}
+
+.company-user ul li p + strong{
+    margin-top: 15px;
+}
+
+.company-user ul li p{
+    color: #41414d;
+    line-height: 21px;
     font-size: 16px;
 }
