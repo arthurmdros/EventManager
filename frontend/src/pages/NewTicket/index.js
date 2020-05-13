@@ -45,7 +45,7 @@ export default function NewEvent(){
     function handleChange (e){
         setType(e.value);
         if(e.value === 'Gratuito'){
-            setValue('Grátis');
+            setValue('0');
         }
     }    
 
@@ -56,7 +56,7 @@ export default function NewEvent(){
             <div>                    
                 <button onClick={() => navigation.push("/page/user/profile")} type="button">
                     <FiArrowLeft size={18} color="#FFF"/>     
-                    Retornar                                               
+                    Home                                               
                 </button>
             </div>
             </header>
@@ -75,12 +75,16 @@ export default function NewEvent(){
                         onChange={handleChange}
                     />
                     <h1>Valor:</h1>
-                    <input                         
+                    <input   
+                        type='number'
+                        step="0.01" min="0"                                       
                         value={value}
                         onChange={e => setValue(e.target.value)}
                     />
                     <h1>Quantidade diponível:</h1>
-                    <input                         
+                    <input  
+                        type="number" 
+                        min="0"                        
                         value={amount}
                         onChange={e => setAmount(e.target.value)}
                     />
