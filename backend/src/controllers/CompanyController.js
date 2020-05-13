@@ -85,7 +85,7 @@ module.exports = {
         return res.status(204).send();
     }, 
 
-    async selectCompanys(req, res){                                 
+    async selectCompanies(req, res){                                 
     
             const companys = await connection('company')                              
                 .select([
@@ -108,5 +108,13 @@ module.exports = {
             })
                 
         return res.json({ id });
-    }
+    },
+
+    async selectCompany(req,res){
+        const {event_id} = req.params;
+                        
+        const companies = await connection('company').where('event_id',event_id).select('*');
+
+        return res.json(companies);
+    },
 }
