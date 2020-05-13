@@ -43,7 +43,7 @@ routes.delete('/event/delete/:id', EventController.delete);
 
 routes.get('/ticket/index', TicketController.index);
 routes.post('/ticket/create', TicketController.create);
-routes.put('/ticket/update/:id', TicketController.update);
+routes.get('/ticket/event/:event_id', TicketController.selectTicket);
 routes.delete('/ticket/delete/:id', TicketController.delete);
 
 
