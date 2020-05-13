@@ -9,11 +9,9 @@ module.exports = {
     },
 
     async create(req,res){
-        const {type,value,amount,event_id} = req.body;
-        const id = crypto.randomBytes(4).toString('HEX');
+        const {type,value,amount,event_id} = req.body;        
 
-        await connection('ticket').insert({
-            id,
+        const [id] = await connection('ticket').insert({            
             type,
             value,
             amount,
