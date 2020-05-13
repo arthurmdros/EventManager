@@ -13,11 +13,15 @@ export default function EventDetail(){
     const item = route.state;    
     const user_id = item.user_id;
     const [tickets, setTickets] = useState([]);
-
+    const [companies, setCompanies] = useState([]);
 
     useEffect(() => {
         api.get(`/ticket/event/${item.id}`).then(response => {
             setTickets(response.data); 
+        })
+
+        api.get(`company/event/${item.id}`).then(response => {
+            setCompanies(response.data);
         })
     }, [item.id]);
 
@@ -40,16 +44,18 @@ export default function EventDetail(){
 
     return(
         <div className="event-container">
-            <div className="content">
-                <section>
-                    <img src={logo} alt="Event Manager"/>
-                    <h1>Informações</h1>
-                    <p>Visualize os dados do seu evento, atualize informações e exclua caso necessário.</p>
+            
+            
+            <header>
+                <img src={logo} alt="Event Manager"/>
+                <h1>Informações</h1>
+                <div>                    
                     <Link to="/page/user/profile">
                         <FiArrowLeft size={16} color="#FFF"/>
                         Voltar para home
                     </Link>
-                </section>   
+                </div>
+            </header> 
 
                 <ul className="event-info">
                     <li>
@@ -96,7 +102,26 @@ export default function EventDetail(){
                                     <p>{ticket.amount}</p>      
                                 </li> 
                             ))}                                  
-                        </ul>                        
+                        </ul> 
+
+                        <strong>Empresas contratadas:</strong>
+                        <ul className="list-company">
+                            {companies.map(company => (
+                                <li key={company.id}>
+                                    <strong>Empresa:</strong>
+                                    <p>{company.name}</p>
+
+                                    <strong>Serviço:</strong>
+                                    <p>R$ {company.service}</p> 
+
+                                    <strong>E-Mail:</strong>
+                                    <p>{company.mail}</p> 
+                                    
+                                    <strong>Telefone:</strong>
+                                    <p>{company.phone}</p> 
+                                </li> 
+                            ))}                                  
+                        </ul> 
 
                         <button className="update-link" onClick={() => navigateToUpdate(item)} type="button">
                             Atualizar informações 
@@ -109,6 +134,6 @@ export default function EventDetail(){
                     </li>
                 </ul>
         </div>
-        </div>
+        
     );
 }
