@@ -43,9 +43,10 @@
 .select-company ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 18px;
+    grid-gap: 20px;
     list-style: none;
     margin-left: 80px;
+    margin-bottom: 20px;
 }
 
 .select-company ul li{
