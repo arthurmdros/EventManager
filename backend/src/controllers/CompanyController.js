@@ -92,5 +92,21 @@ module.exports = {
                     'company.*',
                 ]);    
             return res.json(companys);
+    },
+
+    async confirmCompany(req,res){
+        const { id } = req.params;
+        const { name, service, mail, phone, event_id} = req.body;
+        
+        await connection('company').where('id',id)
+            .update({
+                name,
+                service,
+                mail,
+                phone,
+                event_id,
+            })
+                
+        return res.json({ id });
     }
 }
