@@ -32,16 +32,16 @@
     line-height: 32px;
 }
 
-.event-container ul {
+.event-container .event-info {
     display: flex;
-    width: 50%;
+    width: 60%;
     list-style: none;
     margin: auto;
     margin-top: 60px;
     margin-right: 0px;
 }
 
-.event-container ul li{
+.event-container .event-info li{
     background: #FFF;
     padding: 18px;
     border-radius: 8px;
@@ -49,7 +49,7 @@
     width: 80%;
 }
 
-.event-container ul li .delete-button{
+.event-container .event-info li .delete-button{
     position: absolute;
     right: 4px;
     top: 10px;
@@ -57,27 +57,27 @@
     width: 10%;
 }
 
-.event-container ul li button:hover{
+.event-container .event-info li button:hover{
     opacity: 0.8;
 }
 
-.event-container ul li strong{
+.event-container .event-info li strong{
     display: block;
     margin-bottom: 10px;
     color: #41414d;    
 }
 
-.event-container ul li p + strong{
+.event-container .event-info li p + strong{
     margin-top: 20px;
 }
 
-.event-container ul li p{
+.event-container .event-info li p{
     color: #41414d;
     line-height: 21px;
     font-size: 16px;
 }
 
-.event-container  ul li a {
+.event-container  .event-info li a {
     width: 50%;
     color: #41414d;
     font-size: 16px;
@@ -102,7 +102,7 @@
     line-height: 21px;
 }
 
-.event-container ul li .update-link {    
+.event-container .event-info li .update-link {    
     color: #41414d;
     font-size: 16px;
     margin-top: 10px;
@@ -114,3 +114,30 @@
     width: 50%;
     margin-bottom: 0px;
 }
+
+.event-container .event-info li .list-ticket {
+    display: grid;
+    width: 100%;
+    list-style: none;
+}
+
+.event-container .event-info li .list-ticket li{
+    display: flex;    
+    width: 100%;
+}
+
+.event-container .content .event-info li .list-ticket li strong{
+    display: block;
+    margin-top: 0px;
+    color: #41414d; 
+}
+.event-container .event-info li .list-ticket p + strong{
+    margin-left: 50px;
+}
+
+.event-container .event-info .list-ticket li p{
+    color: #41414d;
+    line-height: 21px;
+    font-size: 16px;
+    margin-left: 5px;
+}    
