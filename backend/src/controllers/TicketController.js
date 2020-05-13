@@ -31,18 +31,11 @@ module.exports = {
         return res.json(204).send();
     },
 
-    async update(req,res){
-        const {id} = req.params;
-        const {type,value,amount,event_id} = req.body;
+    async selectTicket(req,res){
+        const {event_id} = req.params;
+                        
+        const tickets = await connection('ticket').where('event_id',event_id).select('*');
 
-        await connection('ticket').where('id',id)
-            .update({
-                type,
-                value,
-                amount,
-                event_id,
-            });
-        
-        return res.json({id});
-    }
+        return res.json(tickets);
+    },
 }
