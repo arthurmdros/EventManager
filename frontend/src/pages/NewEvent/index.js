@@ -66,7 +66,8 @@ export default function NewEvent(){
                     navigation.push('/page/user/newevent/ticket', response.data);
                 }else if(auxCompany === 1){
                     alert('Evento criado com sucesso, adicione empresas para ele.');
-                    navigation.push('/page/user/newevent/company', response.data);
+                    localStorage.setItem('event_id', response.data.id);
+                    navigation.push('/page/user/newevent/company');
                 }else{
                     alert('Evento criado com sucesso.');
                     navigation.push('/page/user/profile');   
