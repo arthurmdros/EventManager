@@ -17,6 +17,7 @@ import SelectCompany from './pages/CompanySelect';
 import NewTicket from './pages/NewTicket';
 import CompanyUser from './pages/CompanyUser';
 import EventTicket from './pages/EventTicket';
+import EventCompany from './pages/EventCompany';
 
 export default function Routes(){
     return(
@@ -39,6 +40,7 @@ export default function Routes(){
                 <Route path="/page/user/newevent/ticket" exact component = {NewTicket} />
                 <Route path="/page/user/newevent/company/detail" exact component = {CompanyUser} />
                 <Route path="/page/user/event/tickets" exact component = {EventTicket} />
+                <Route path="/page/user/event/companies" exact component = {EventCompany} />
             </Switch>
         </BrowserRouter>
     );
