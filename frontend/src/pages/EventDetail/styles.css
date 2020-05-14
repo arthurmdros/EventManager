@@ -92,19 +92,19 @@
     margin-top: 15px;    
   }
 
-.event-container .content .container-date, .container-time {
+.event-container  .container-date, .container-time {
     display: flex;          
     justify-content: space-between;    
     margin-bottom: 8px;
 }
 
-.event-container .content .titles{    
+.event-container .titles{    
     display: flex;
     justify-content: space-between;
     margin-top: 8px;
 }
 
-.event-container .content .titles strong{    
+.event-container .titles strong{    
     font-size: 14px;
     color: #41414d;
     line-height: 21px;
@@ -134,13 +134,13 @@
     width: 100%;
 }
 
-.event-container .content .event-info li .list-ticket li strong{
+.event-container .event-info li .list-ticket strong{
     display: block;
     margin-top: 0px;
     color: #41414d; 
 }
 .event-container .event-info li .list-ticket p + strong{
-    margin-left: 50px;
+    margin-left: 100px;    
 }
 
 .event-container .event-info .list-ticket li p{
