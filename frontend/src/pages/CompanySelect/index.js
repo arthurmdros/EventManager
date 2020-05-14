@@ -8,7 +8,7 @@ import './styles.css';
 
 export default function Profile(){
 
-    const event_id = localStorage.getItem('event_id');
+    const event_id = localStorage.getItem('event_id');    
     const [companies, setCompanies] = useState([]);
     const navigation = useHistory();
 
@@ -32,17 +32,18 @@ export default function Profile(){
             alert('Erro ao selecionar empresa, tente novamente.');
         }        
     }
-    
+
     return(
         <div className="select-company">
             <header>
-                <img src={logo} alt="Event Manager"/>
-                <div>                    
+                <img src={logo} alt="Event Manager"/>                 
+                    <button className = "btn-ticket" onClick={() => navigation.push('/page/user/newevent/ticket')} type="button">                    
+                        Adicionar ingresso                                               
+                    </button>               
                     <button onClick={() => navigation.push("/page/user/profile")} type="button">
                         <FiArrowLeft size={18} color="#FFF"/>     
                         Home                                               
                     </button>
-                </div>
             </header>
 
             <h1>Empresas</h1>
