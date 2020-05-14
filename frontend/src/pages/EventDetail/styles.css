@@ -28,16 +28,9 @@
   }
 
 .event-container  header a {
-  width: 100%;
-  border-radius: 4px;
-  background: #1393f6;
-  color: #FFF;  
-  font-size: 18px;
-  font-weight: 500;
-  transition: opacity 0.2s;  
-  display: flex;
-  align-items: center;        
-  text-decoration: none;
+    width: 150px;
+    margin-left: auto;
+    margin-top: 0; 
 }
 .event-container .event-info {
     display: flex;
@@ -62,7 +55,7 @@
     right: 4px;
     top: 10px;
     border: 0;
-    width: 10%;
+    width: 5%;
 }
 
 .event-container .event-info li button:hover{
@@ -138,6 +131,7 @@
     display: block;
     margin-top: 0px;
     color: #41414d; 
+    margin-left: 100px;
 }
 .event-container .event-info li .list-ticket p + strong{
     margin-left: 100px;    
