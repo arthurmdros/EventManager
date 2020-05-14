@@ -10,7 +10,7 @@
 
 .eventupdate-container .content{
     width: 100%;
-    padding: 60px;
+    padding: 40px;
     background: #1393f6;
     border-radius: 8px;
 
@@ -52,11 +52,6 @@
 .eventupdate-container .content form input{
     margin-top: 8px;
     width: 80%;
-}
-
-.eventupdate-container .content form .btnForm{
-    margin-top: 30px;
-    margin-left: 40px;
 }
 
 .eventupdate-container .content form h1{
@@ -104,4 +99,26 @@
 .eventupdate-container .content form textarea{
     margin-top: 8px;
     width: 80%;
+}
+
+.eventupdate-container .content form .actions{
+    display: flex;
+    margin-top: 10px;   
+}
+
+.eventupdate-container .content form .btnForm{
+    font-size: 16px;
+    width: 30%;
+    margin-left: 120px;
+}
+
+.eventupdate-container .content form .btn-ticket{
+    width: 35%;
+    font-size: 16px;
+}
+
+.eventupdate-container .content form .btn-company{
+    width: 35%;
+    font-size: 16px;
+    margin-left: 50px;
 }
