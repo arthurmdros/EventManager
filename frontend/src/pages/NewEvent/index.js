@@ -63,13 +63,15 @@ export default function NewEvent(){
                 })                    
                 if(auxTicket === 1){
                     alert('Evento criado com sucesso, adicione ingressos para ele.');
-                    navigation.push('/page/user/newevent/ticket', response.data);
+                    localStorage.setItem('event_id', response.data.id);
+                    navigation.push('/page/user/newevent/ticket');
                 }else if(auxCompany === 1){
                     alert('Evento criado com sucesso, adicione empresas para ele.');
                     localStorage.setItem('event_id', response.data.id);
                     navigation.push('/page/user/newevent/company');
                 }else{
                     alert('Evento criado com sucesso.');
+                    localStorage.setItem('event_id', response.data.id);
                     navigation.push('/page/user/profile');   
                 }                
             }catch(err){
