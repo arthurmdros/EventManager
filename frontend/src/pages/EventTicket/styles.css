@@ -1,4 +1,96 @@
-h1{
+.event-ticket {
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 20px;
+    margin: auto;
+  }
+
+.event-ticket header {
+    display: flex;
+    align-items: center;
+}
+
+.event-ticket header img {
+  height: 150px;
+  margin-right: 500px;
+}
+
+.event-ticket header button {
+    width: 60px;
+    border-radius: 4px;
+    background: #1393f6;
+    color: #FFF;  
+    font-size: 18px;
+    font-weight: 500;
+    transition: opacity 0.2s;  
+    display: flex;
+    align-items: center;        
+    text-decoration: none;  
+}
+
+.event-ticket header .btn-ticket {
+    margin-right: 50px;
+    margin-left: 130px;
+    width: 200px;
+    border-radius: 4px;
+    background: #1393f6;
+    color: #FFF;  
+    font-size: 18px;
+    font-weight: 500;
+    transition: opacity 0.2s;  
+    display: inline-block;
+    align-items: center;        
+    text-decoration: none; 
+} 
+
+.event-ticket h1{
+    margin-bottom: 10px;
+    margin-left: 90px;
     color: #FFF;
+    font-size: 20px;
+}
+
+.event-ticket ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    list-style: none;
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
+
+.event-ticket ul li{
+    background: #FFF;
+    padding: 18px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+}
+
+.event-ticket ul li strong{
+    display: block;
+    margin-bottom: 10px;
+    color: #41414d;    
+}
+
+.event-ticket ul li p + strong{
+    margin-top: 15px;
+}
+
+.event-ticket ul li p{
+    color: #41414d;
+    line-height: 21px;
     font-size: 16px;
+}
+
+.event-ticket ul li .button-select{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: 0;
+    width: 10%;
+}
+
+.event-ticket ul li button:hover{
+    opacity: 0.8;
 }
