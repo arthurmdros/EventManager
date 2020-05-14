@@ -16,14 +16,14 @@
 }
 
 .select-company header button {
-    width: 100px;
+    width: 60px;
     border-radius: 4px;
     background: #1393f6;
     color: #FFF;  
     font-size: 18px;
     font-weight: 500;
     transition: opacity 0.2s;  
-    display: inline-block;
+    display: flex;
     align-items: center;        
     text-decoration: none;  
 }
