@@ -19,6 +19,7 @@ export default function NewEvent(){
     const [type, setType] = useState('');    
     const [value, setValue] = useState('');
     const [amount, setAmount] = useState('');
+    const [limit, setLimit] = useState(0);
 
     async function createTicket(e){
         e.preventDefault();
@@ -31,10 +32,15 @@ export default function NewEvent(){
         
        if(data.type === ''){
            alert('Um tipo de ingresso deve ser selecionado.');
-       }else{
+       }else if(limit === 3){
+           alert('Limite de ingressos adicionados atingido.');
+           navigation.push('/page/user/profile');
+       }
+       else{                         
             try{
-                await api.post('ticket/create', data);                 
-                alert('Ingresso adicionado com sucesso.');
+                await api.post('ticket/create', data);     
+                setLimit(limit + 1);            
+                alert('Ingresso adicionado com sucesso.');                            
             }catch(err){
                 alert('Erro ao adicionar ingresso, tente novamente.');
             }
