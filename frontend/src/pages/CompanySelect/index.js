@@ -10,6 +10,7 @@ export default function Profile(){
 
     const event_id = localStorage.getItem('event_id');    
     const [companies, setCompanies] = useState([]);
+    const [limit, setLimit] = useState(0);
     const navigation = useHistory();
 
     useEffect(() => {
@@ -21,16 +22,22 @@ export default function Profile(){
    
     function navigateToDetail(company){
         navigation.push('/page/user/newevent/company/detail', company);
-    }
-
+    }    
+             
     async function selectCompany(company){    
         company.event_id = event_id;
-        try{
-            await api.put(`company/select/${company.id}`, company);                 
-            alert('Empresa selecionada com sucesso.');
-        }catch(err){
-            alert('Erro ao selecionar empresa, tente novamente.');
-        }        
+        if(limit === 5){
+            alert('Limite de emrpesas contratadas atingido.');
+            navigation.push('/page/user/profile');
+        }else{
+            try{
+                await api.put(`company/select/${company.id}`, company);  
+                setLimit(limit + 1);                
+                alert('Empresa selecionada com sucesso.');
+            }catch(err){
+                alert('Erro ao selecionar empresa, tente novamente.');
+            }  
+        }              
     }
 
     return(
