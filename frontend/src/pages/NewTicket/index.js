@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useHistory,useLocation } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import Select from 'react-select';
 
@@ -7,10 +7,9 @@ import './styles.css';
 import logo from '../../assets/logo.png';
 import api from '../../services/api';
 
-export default function NewEvent(){       
-    const route = useLocation();    
-    const item = route.state;  
-    const event_id  = item.id;
+export default function NewEvent(){ 
+
+    const event_id = localStorage.getItem('event_id');    
     const navigation = useHistory();
     const typeoptions = [
         { value: 'Gratuito', label: 'Gratuito' },
@@ -52,13 +51,15 @@ export default function NewEvent(){
     return(
         <div className="ticket-container">            
             <header>
-            <img src={logo} alt="Event Manager"/>
-            <div>                    
+            <img src={logo} alt="Event Manager"/>                             
+                <button className = "btn-company" onClick={() => navigation.push('/page/user/newevent/company')} type="button">                    
+                    Adicionar empresa                                               
+                </button>
+
                 <button onClick={() => navigation.push("/page/user/profile")} type="button">
                     <FiArrowLeft size={18} color="#FFF"/>     
                     Home                                               
-                </button>
-            </div>
+                </button>           
             </header>
             
             <h1>Adicione ingressos para seu evento</h1>
