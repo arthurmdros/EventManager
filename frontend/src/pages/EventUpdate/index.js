@@ -16,6 +16,8 @@ export default function NewEvent(){
     const item = route.state;      
     const user_id = item.user_id; 
     
+    var auxTicket = 0;
+    var auxCompany = 0;
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [startDate, setStartDate] = useState(new Date());
@@ -42,7 +44,7 @@ export default function NewEvent(){
     const [selectedValue, setSelectedValue] = useState('');
 
 
-    async function updateEvent(e){
+    async function updateEvent(e){             
         e.preventDefault();
         const data = { 
             title,
@@ -53,18 +55,28 @@ export default function NewEvent(){
             selectedEndTime,
             selectedValue
         };
-        
-        try {
-            await api.put(`event/update/${item.id}`, data, {
-                headers:{
-                    Authorization: user_id,
-                }
-            })
-            alert('Atualizado com sucesso!');
-            navigation.push('/page/user/profile');
-        }catch(err){
-            alert('Erro ao atualizar, tente novamente.');
-        }
+            try {                
+                const response = await api.put(`event/update/${item.id}`, data, {
+                    headers:{
+                        Authorization: user_id,
+                    }
+                })                                
+                if(auxTicket === 1){
+                    alert('Evento atualizado com sucesso, indo para ingressos adicionados.');
+                    localStorage.setItem('event_id', response.data.id);
+                    navigation.push('/page/user/event/tickets');
+                }else if(auxCompany === 1){
+                    alert('Evento atualizado com sucesso, indo para empresas contratadas.');
+                    localStorage.setItem('event_id', response.data.id);
+                    navigation.push('/page/user/event/companies');
+                }else{
+                    alert('Atualizado com sucesso!');
+                    localStorage.setItem('event_id', response.data.id);
+                    navigation.push('/page/user/profile');   
+                }                
+            }catch(err){
+                alert('Erro ao atualizar, tente novamente.');
+            }         
     }
 
     function navigateToDetail(item){
@@ -103,6 +115,16 @@ export default function NewEvent(){
         const hour = date.getHours();   
         const minute = date.getMinutes();         
         setSelectedEndTime(hour+':'+minute);     
+    }
+
+    function navigateToTicket(e){
+        auxTicket += 1;
+        updateEvent(e);        
+    }
+
+    function navigateToCompany(e){
+        auxCompany += 1;
+        updateEvent(e);        
     }
 
     return(
@@ -179,7 +201,11 @@ export default function NewEvent(){
                             dateFormat="dd/MM/yyyy"
                             value={endDate}    
                         />
-                    </div>                    
+                    </div>     
+                    <div className='actions'>
+                        <button className='btn-ticket' onClick={navigateToTicket} type="button">Ingressos adicionados</button>             
+                        <button className='btn-company' onClick={navigateToCompany} type="button">Empresas contratadas</button>                                     
+                    </div>               
                     <button className="btnForm" type="submit">Cadastrar</button>
                 </form>
             </div>
