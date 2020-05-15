@@ -33,6 +33,7 @@ export default function Profile(){
             try{
                 await api.put(`company/select/${company.id}`, company);  
                 setLimit(limit + 1);                
+                setCompanies(companies.filter(item => item.id !== company.id));
                 alert('Empresa selecionada com sucesso.');
             }catch(err){
                 alert('Erro ao selecionar empresa, tente novamente.');
