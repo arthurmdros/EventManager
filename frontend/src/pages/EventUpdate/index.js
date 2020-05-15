@@ -15,11 +15,12 @@ export default function NewEvent(){
     const route = useLocation();
     const item = route.state;      
     const user_id = item.user_id; 
-    
+
     var auxTicket = 0;
     var auxCompany = 0;
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+
+    const [title, setTitle] = useState(item.title);
+    const [description, setDescription] = useState(item.description);
     const [startDate, setStartDate] = useState(new Date());
     const [selectedStartDate, setSelectedStartDate] = useState('');   
 
@@ -41,7 +42,7 @@ export default function NewEvent(){
         { value: 'Convenção', label: 'Convenção' },
         { value: 'Aula, Treinamento ou Workshop', label: 'Aula, Treinamento ou Workshop' }
       ]    
-    const [selectedValue, setSelectedValue] = useState('');
+    const [selectedValue, setSelectedValue] = useState(item.selectedValue);
 
 
     async function updateEvent(e){             
@@ -142,12 +143,12 @@ export default function NewEvent(){
                 <form onSubmit={updateEvent}>
                     <h1>Evento:</h1>
                     <input                         
-                        value={item.title}
+                        value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
                     <h1>Descrição:</h1>
                     <textarea                         
-                        value={item.description}
+                        value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
                     <h1>Tipo de evento:</h1>
