@@ -18,8 +18,13 @@ export default function EventTicket(){
         })
     }, [event_id]);
           
-    async function removeTicket(){    
-        alert('Cancelar contrato');
+    async function removeTicket(id){    
+        try{
+            await api.delete(`/ticket/delete/${id}`);   
+            setTickets(tickets.filter(ticket => ticket.id !== id));         
+            }catch(err){
+                alert('Erro ao deletar ingresso, tente novamente.');
+            }          
     }
 
     return(
@@ -49,7 +54,7 @@ export default function EventTicket(){
                     <strong>Quantidade disponível:</strong>
                     <p>{ticket.amount}</p>
 
-                    <button className="button-select" onClick={removeTicket} type="button">
+                    <button className="button-select" onClick={() => removeTicket(ticket.id)} type="button">
                             <FiCheckCircle size={18} color="#1393f6"/>
                     </button>
                 </li>                                        
