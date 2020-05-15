@@ -18,8 +18,15 @@ export default function EventCompany(){
         })
     }, [event_id]);
           
-    async function removeCompany(){    
-        alert('Cancelar contrato');
+    async function removeCompany(company){        
+        company.event_id = null;      
+        try{
+            await api.put(`company/select/${company.id}`, company);                                 
+            setCompanies(companies.filter(item => item.id !== company.id)); 
+        }catch(err){
+            alert('Erro ao selecionar empresa, tente novamente.');
+        }  
+                    
     }
 
     return(
@@ -52,7 +59,7 @@ export default function EventCompany(){
                     <strong>Telefone:</strong>
                     <p>{company.phone}</p>
 
-                    <button className="button-select" onClick={removeCompany} type="button">
+                    <button className="button-select" onClick={() => removeCompany(company)} type="button">
                             <FiCheckCircle size={18} color="#1393f6"/>
                     </button>
                 </li>                                        
