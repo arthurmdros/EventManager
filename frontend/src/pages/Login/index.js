@@ -19,8 +19,7 @@ export default function Login(){
             if(data.password.length >= 8){
                 if(data.login === "admin"){
                     try{                    
-                        const admin = await api.post('admin/session', data);
-                        alert(`Bem-Vindo! ${admin.data.login}`);
+                        const admin = await api.post('admin/session', data);                        
                         localStorage.setItem('admin_id',admin.data.id);
                         localStorage.setItem('login',admin.data.login);
                         navigation.push('/page/admin/profile');
@@ -31,8 +30,7 @@ export default function Login(){
                     }
                 }else{
                     try{
-                        const user = await api.post('user/session', data);
-                        alert(`Bem-Vindo! ${user.data.name}`);
+                        const user = await api.post('user/session', data);                        
                         localStorage.setItem('user_id',user.data.id);
                         localStorage.setItem('user_name',user.data.name);
                         navigation.push('/page/user/profile');
