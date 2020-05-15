@@ -87,7 +87,7 @@ module.exports = {
 
     async selectCompanies(req, res){                                 
     
-            const companys = await connection('company')                              
+            const companys = await connection('company').where('event_id', null)                             
                 .select([
                     'company.*',
                 ]);    
