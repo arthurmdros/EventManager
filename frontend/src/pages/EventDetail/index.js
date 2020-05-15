@@ -112,7 +112,7 @@ export default function EventDetail(){
                                     <p>{company.name}</p>
 
                                     <strong>Serviço:</strong>
-                                    <p>R$ {company.service}</p> 
+                                    <p>{company.service}</p> 
 
                                     <strong>E-Mail:</strong>
                                     <p>{company.mail}</p> 
