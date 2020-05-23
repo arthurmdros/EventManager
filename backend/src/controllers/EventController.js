@@ -85,5 +85,22 @@ module.exports = {
             })
         return res.json({id});
         
+    },
+
+    async selectCategorie(req,res) {
+        const { page = 1 } = req.query;
+        const { selectedValue } = req.params;
+
+        const [count] = await connection('event').count();
+
+        const events = await connection('event')
+           .join('user', 'user.id', '=', 'event.user_id')
+           .limit(5)
+           .offset((page - 1) * 5)
+           .where('selectedValue', selectedValue)
+           .select('event.*');
+        
+        res.header('Total-Events', count['count(*)']);
+        return res.json(events)
     }
 }
