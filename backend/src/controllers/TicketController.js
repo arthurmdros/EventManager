@@ -36,4 +36,15 @@ module.exports = {
 
         return res.json(tickets);
     },
+
+    async updateTicket(req,res) {
+        const {id} = req.params;
+        const {amount} = req.body;
+
+        const ticket = await connection('ticket').where('id', id).update({
+            amount
+        });
+
+        return res.json(ticket)
+    }
 }
