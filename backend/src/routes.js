@@ -48,6 +48,7 @@ routes.get('/ticket/index', TicketController.index);
 routes.post('/ticket/create', TicketController.create);
 routes.get('/ticket/event/:event_id', TicketController.selectTicket);
 routes.delete('/ticket/delete/:id', TicketController.delete);
+routes.put('/ticket/update/:id', TicketController.updateTicket);
 
 
 
