@@ -42,6 +42,7 @@ routes.get('/event/index', EventController.index);
 routes.post('/event/create', EventController.create);
 routes.put('/event/update/:id', EventController.update);
 routes.delete('/event/delete/:id', EventController.delete);
+routes.get('/event/index/:selectedValue', EventController.selectCategorie);
 
 routes.get('/ticket/index', TicketController.index);
 routes.post('/ticket/create', TicketController.create);
