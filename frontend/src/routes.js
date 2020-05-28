@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
 import Register from './pages/Register';
@@ -22,7 +22,10 @@ import EventCompany from './pages/EventCompany';
 export default function Routes(){
     return(
         <BrowserRouter>
-            <Switch>
+            <Switch>     
+                <Route path="/" exact component = {Login}>
+                    <Redirect to="/page/login"/>
+                </Route>
                 <Route path="/page/login" exact component = {Login} />
                 <Route path="/page/admin/profile" exact component = {Admin} />
                 <Route path="/page/register" exact component = {Register} />                
