@@ -41,10 +41,10 @@ module.exports = {
         const {id} = req.params;
         const {amount} = req.body;
 
-        const ticket = await connection('ticket').where('id', id).update({
-            amount
+        await connection('ticket').where('id', id).update({
+            amount,
         });
 
-        return res.json(ticket)
+        return res.json({id});
     }
 }
