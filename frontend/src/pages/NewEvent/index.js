@@ -126,89 +126,126 @@ export default function NewEvent(){
     }
 
     return(
-        <div className="newEvent-container">
-            <div className="content">
-                <section>
+        <div id="newEvent-container">            
+                <header>
                     <img src={logo} alt="Event Manager"/>
-                    <h1>Cadastrar evento</h1>
-                    <p>Cadastre seu evento para que pessoas possam conhecer seu trabalho como organizador.</p>
                     <Link to="/page/user/profile">
                         <FiArrowLeft size={16} color="#FFF"/>
                         Voltar para home
                     </Link>
-                </section>
+                </header>
                 
                 <form onSubmit={createEvent}>
+                    <h1>Cadastrar evento</h1>
+                    <p>Cadastre seu evento para que pessoas possam conhecer seu trabalho como organizador.</p>                                       
                 
-                    <h1>Evento:</h1>
-                    <input                         
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                    />
-                    <h1>Descrição:</h1>
-                    <textarea                         
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                    />
-                    <h1>Tipo de evento:</h1>
-                    <Select                         
-                        className="select-input" 
-                        options={eventoptions}
-                        value={eventoptions.filter(obj => obj.value === selectedValue)} 
-                        onChange={handleChange}
-                    />
-                    <section className="titles">
-                        <h1>Inicio ás:</h1>
-                        <h1>Termina ás:</h1>
-                    </section>
-                    <div className = "container-time">                        
-                        <DatePicker
-                            selected={startTime}
-                            onChange={date => hanldeStartTimeChange(date)}
-                            showTimeSelect
-                            showTimeSelectOnly                               
-                            timeIntervals={30}
-                            timeCaption="Time"
-                            dateFormat="h:mm a"                                
-                            value={startTime}
-                            
-                        />                        
-                        <DatePicker
-                            selected={endTime}
-                            onChange={date => hanldeEndTimeChange(date)}
-                            showTimeSelect
-                            showTimeSelectOnly                            
-                            timeIntervals={30}
-                            timeCaption="Time"
-                            dateFormat="h:mm a"  
-                            value={endTime}                          
+                <fieldset>
+                    <legend>
+                        <h2>Informações</h2>
+                    </legend>
+
+                    <div className="field">
+                        <label htmlFor="name">Evento:</label>
+                        <input 
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={title}
+                            onChange={e => setTitle(e.target.value)}
                         />
                     </div>
-                    <section className="titles">                        
-                        <h1>Inicio dia:</h1>
-                        <h1>Termina dia:</h1>
-                    </section>
-                    <div className= "container-date">                        
-                        <DatePicker
-                            selected={startDate}
-                            onChange={date => hanldeStartDateChange(date)}                         
-                            dateFormat="dd/MM/yyyy"  
-                            value={startDate}                                                         
-                        />                        
-                        <DatePicker
-                            selected={endDate}
-                            onChange={date => hanldeEndDateChange(date)}
-                            dateFormat="dd/MM/yyyy"
-                            value={endDate}    
+
+                    <div className="field">
+                        <label htmlFor="name">Descrição</label>
+                        <textarea                         
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
                         />
-                    </div>   
-                    <div className='actions'>
-                        <button className='btn-ticket' onClick={navigateToTicket} type="button">Adicionar ingresso</button>             
-                        <button className='btn-company' onClick={navigateToCompany} type="button">Adicionar empresa</button>                                     
                     </div>
+
+                    <div className="field">
+                        <label htmlFor="name">Tipo de evento</label>
+                        <Select                                                    
+                            className="select-input" 
+                            options={eventoptions}
+                            value={eventoptions.filter(obj => obj.value === selectedValue)} 
+                            onChange={handleChange}
+                        />
+                    </div>  
+                    
+                    <legend>
+                        <h2>Horários do evento</h2>
+                    </legend>                 
+                    
+                    <div className="field-group">´
+                        <div className="field">
+                            <label htmlFor="startTime">Inicio ás:</label>
+                            <DatePicker  
+                                className="select-datepicker"                          
+                                selected={startTime}
+                                onChange={date => hanldeStartTimeChange(date)}
+                                showTimeSelect
+                                showTimeSelectOnly                               
+                                timeIntervals={30}
+                                timeCaption="Time"
+                                dateFormat="h:mm a"                                
+                                value={startTime}
+                                
+                            /> 
+                        </div>
+                        <div className="field">
+                            <label htmlFor="endTime">Termina ás:</label>
+                            <DatePicker
+                                className="select-datepicker"                          
+                                selected={endTime}
+                                onChange={date => hanldeEndTimeChange(date)}
+                                showTimeSelect
+                                showTimeSelectOnly                            
+                                timeIntervals={30}
+                                timeCaption="Time"
+                                dateFormat="h:mm a"  
+                                value={endTime}                          
+                            /> 
+                        </div>                       
+                    </div>
+
+                    <legend>
+                        <h2>Datas do evento</h2>
+                    </legend>  
+
+                    <div className="field-group">
+                        <div className="field">
+                            <label htmlFor="startDate">Inicio dia:</label>
+                            <DatePicker
+                                className="select-datepicker"                          
+                                selected={startDate}
+                                onChange={date => hanldeStartDateChange(date)}                         
+                                dateFormat="dd/MM/yyyy"  
+                                value={startDate}                                                         
+                            />  
+                        </div>
+                        <div className="field">
+                            <label htmlFor="startTime">Termina dia:</label>
+                            <DatePicker
+                                className="select-datepicker"                          
+                                selected={endDate}
+                                onChange={date => hanldeEndDateChange(date)}
+                                dateFormat="dd/MM/yyyy"
+                                value={endDate}    
+                            />
+                        </div>                         
+                    </div>
+                    <div className="field-group">
+                        <div className="field">
+                            <button className='btn-ticket' onClick={navigateToTicket} type="button">Adicionar ingresso</button>             
+                        </div>
+                        <div className="field">
+                            <button className='btn-company' onClick={navigateToCompany} type="button">Adicionar empresa</button>                                     
+                        </div>
+                    </div>
+                    </fieldset>                      
                     <button className="btnForm" type="submit">Cadastrar</button>
                 </form>                
-            </div>
-        </div>
+            </div>        
     );
 }
