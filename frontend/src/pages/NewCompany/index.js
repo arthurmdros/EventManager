@@ -1,79 +1,113 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
-import { Form } from "@unform/web";
 
 import './styles.css';
 import api from '../../services/api';
 import logo from '../../assets/logo.png';
-import Input from '../component/input';
 
-export default function NewCompany(){
-    const formRef = useRef(null);
+export default function NewCompany(){    
     const navigation = useHistory();    
+    const [formData, setFormData] = useState({
+        name: '',
+        service: '',
+        mail: '',
+        phone: '',
+    });
     
     const admin_id = localStorage.getItem('admin_id');    
     
+    
+    function handleInputChange(event){
+        const { name, value } = event.target;
 
-    async function handleSubmit(data, {reset}){
-        if(data.name === ""){
+        setFormData({...formData, [name]: value});
+    } 
+
+    async function handleSubmit(event){
+        event.preventDefault();
+
+        if(formData.name === ""){
             alert("Campo nome é obrigatório");            
         }else{
             try{
-                await api.post('company/create', data, {
+                await api.post('company/create', formData, {
                     headers: {
                         Authorization: admin_id,
                     }
                 });
                 alert('Salvo com sucesso!');
                 navigation.push('/page/admin/profile');
-            }catch(err){
-                reset();
+            }catch(err){                
                 alert('Erro ao cadastrar, tente novamente');
             }
         }
     }
 
     return(
-        <div className="newCompany-container">
-            <div className="content">
-                <section>
-                    <img src={logo} alt="Event Manager"/>
-                    <h1>Cadastrar empresa</h1>
-                    <p>Cadastre empresas que possam contribuir nos eventos com seus serviços, facilitando o contrato entre prestadores de serviços e organizadores de eventos.</p>
+        <div id="newCompany-container">            
+                <header>
+                    <img src={logo} alt="Event Manager"/>                    
                     <Link to="/page/admin/profile">
                         <FiArrowLeft size={16} color="#FFF"/>
                         Voltar para home
                     </Link>
-                </section>
+                </header>
 
-                <Form ref={formRef} onSubmit={handleSubmit}> 
-                    <h1>Empresa:</h1> 
-                    <Input 
-                        name="name"
-                        type="name"
-                    />
-                    <h1>Serviço:</h1>
-                    <Input 
-                        name="service"
-                        type="service"
-                    />
-                    <h1>E-mail:</h1>
-                    <Input 
-                        name="mail"
-                        type="mail"
-                    />
-                    <h1>Telefone:</h1>
-                    <Input 
-                        name="phone"
-                        type="phone"
-                    />
-                    <button className="btnForm" onPress={() => formRef.current.submitForm()}>
+               
+                <form onSubmit={handleSubmit}> 
+                    <h1>Cadastrar empresa</h1>
+                    <p>Cadastre empresas que possam contribuir nos eventos com seus serviços, facilitando o contrato entre prestadores de serviços e organizadores de eventos.</p>
+
+
+                    <fieldset>
+                        <legend>
+                            <h2>Informações</h2>
+                        </legend> 
+
+                        <div className="field">
+                        <label htmlFor="name">Empresa</label>
+                            <input 
+                                name="name"
+                                type="name"
+                                id="name"
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="field">
+                        <label htmlFor="service">Serviço</label>
+                            <input 
+                                name="service"
+                                type="service"
+                                id="service"
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="field-group">
+                            <div className="field">
+                                <label htmlFor="email">E-mail</label>
+                                <input 
+                                    name="mail"
+                                    type="email"
+                                    id="email"
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="field">
+                                <label htmlFor="phone">Telefone</label>
+                                <input 
+                                    name="phone"
+                                    type="text"
+                                    id="phone"
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                        </div>                                              
+                    </fieldset>
+                    <button type="submit">
                         Salvar
                     </button>
-
-                </Form>
-            </div>
-        </div>
+                </form>
+            </div>        
     );
 }
