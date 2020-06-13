@@ -1,117 +1,170 @@
-.newEvent-container {
+#newEvent-container {
     width: 100%;
-    max-width: 1120px;
-    height: 80vh;
-    margin-left: 150px;
-    display: flex;    
-    align-items: center;
-    justify-content: center;
+    max-width: 1100px;
+
+    margin: 0 auto;
 }
 
-.newEvent-container .content{
-    width: 100%;
-    padding: 60px;
-    background: #1393f6;
+#newEvent-container header {
+    margin-top: 0px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#newEvent-container header a {
+    color: #FFF;
+    text-decoration: none;
+    margin-left: 700px;    
+    display: flex;
+    align-items: center;
+}
+
+#newEvent-container form {
+    margin: 40px auto;
+    padding: 64px;
+    max-width: 730px;
+    background: #FFF;
     border-radius: 8px;
 
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
 }
 
-.newEvent-container .content section{
-    width: 100%;
-    max-width: 380px;
+#newEvent-container form h1 {
+    font-size: 32px;
 }
 
-.newEvent-container .content section h1{
-    margin: 40px 0 20px;
-    font-size: 32px;    
-    color: #FFF;
-}
-
-.newEvent-container .content section p {
-    font-size: 18px;
-    color: #FFF;
+#newEvent-container form p{
+    margin-top: 10px;
+    font-size: 18px;    
     line-height: 32px;
 }
 
-.newEvent-container .content form{
+#newEvent-container form fieldset {
+    margin-top: 64px;
+    min-inline-size: auto;
+    border: 0;
+}
+
+#newEvent-container form legend {
     width: 100%;
-    max-width: 450px;   
-    margin-top: 90px; 
-}
-
-.newEvent-container .content form input{
-    margin-top: 8px;
-    width: 80%;
-}
-
-.newEvent-container .content form textarea{
-    margin-top: 8px;
-    width: 80%;
-}
-
-.newEvent-container .content form .actions{
-    display: flex;
-    margin-top: 10px;   
-}
-
-.newEvent-container .content form .btnForm{
-    font-size: 16px;
-    width: 30%;
-    margin-left: 120px;
-}
-
-.newEvent-container .content form .btn-ticket{
-    width: 35%;
-    font-size: 16px;
-}
-
-.newEvent-container .content form .btn-company{
-    width: 35%;
-    font-size: 16px;
-    margin-left: 50px;
-}
-
-.newEvent-container .content form h1{
-    color: #FFF;
-    margin-top: 8px;    
-}
-
-.newEvent-container .content form .input-group{
-    display: flex;
-}
-
-.newEvent-container .content form .input-group input + input{
-    margin-left: 8px;
-}
-
-.newEvent-container .content .container-date, .container-time{
-    display: flex;          
-    margin-left: 10px;    
-}
-
-.newEvent-container .content .container-time input{
-    width: 60%;
-    margin-right: 40px;
-}
-
-.newEvent-container .content .container-date input{    
-    margin-right: 10px;
-}
-
-.newEvent-container .content .titles{    
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
-.newEvent-container .content .titles h1{    
+#newEvent-container form .field-group {
+    flex: 1;
+    display: flex;
+}
+
+#newEvent-container form .field {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+#newEvent-container form .field input, 
+#newEvent-container form .field textarea{
+    flex: 1;
+    background: #F0F0F5;
+    border-radius: 8px;
+    border: 0;
+    padding: 16px 24px;
     font-size: 16px;
-    margin-right: 110px;
+    color: #6C6C80;
+    width: 100%;
 }
 
-.newEvent-container .content form .select-input{
-    margin-top: 8px;
-    width: 80%;
+#newEvent-container form .field .select-input {    
+    flex: 1;
+    border-radius: 8px;
+    border: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+}
+
+#newEvent-container form .field .select-datepicker{
+    cursor: pointer;
+}
+
+#newEvent-container form .field label {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+#newEvent-container form .field :disabled {
+    cursor: not-allowed;
+}
+
+#newEvent-container form .field-group .field + .field {
+    margin-left: 24px;
+}
+
+#newEvent-container form .field-group input + input {
+    margin-left: 24px;
+}
+
+#newEvent-container form .field-check {
+    flex-direction: row;
+    align-items: center;
+}
+
+#newEvent-container form .field-check input[type=checkbox] {
+    background: #F0F0F5;
+}
+
+#newEvent-container form .field-check label {
+    margin: 0 0 0 8px;
+}
+
+#newEvent-container form .leaflet-container {
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+#newEvent-container form button:hover {
+    background: #A0A0B2;
+    color: #FFF;
+}
+
+#newEvent-container  form  .btnForm{
+    font-size: 16px;
+    width: 30%;
+    color: #1393f6;
+    background: var(--primary-color);
+    border-radius: 8px;        
+    font-weight: bold;        
+    border: 0;
+    align-self: center;
+    margin-top: 40px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+#newEvent-container form .field-group .field .btn-ticket,
+#newEvent-container form .field-group .field .btn-company{        
+    width: 60%;
+    font-size: 16px;        
+    color: #1393f6;
+    background: var(--primary-color);
+    border-radius: 8px;        
+    font-weight: bold;        
+    border: 0;
+    align-self: center;
+    margin-top: 40px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+#newEvent-container form .field-group .field button:hover {
+    background: #A0A0B2;
+    color: #FFF;
 }
