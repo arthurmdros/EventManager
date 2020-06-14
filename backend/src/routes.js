@@ -1,4 +1,7 @@
 const express = require('express');
+const multer = require('multer');
+const multerConfig = require('./config/multer');
+
 const AdminController = require('./controllers/AdminController');
 const UserController = require('./controllers/UserController');
 const CompanyController = require('./controllers/CompanyController');
@@ -11,6 +14,7 @@ const ProfileAdmController = require('./controllers/ProfileAdmController');
 
 
 const routes = express.Router();
+const upload = multer(multerConfig);
 
 routes.post('/admin/session', LoginAdmController.create);
 routes.get('/admin/profile', ProfileAdmController.index);
@@ -39,7 +43,7 @@ routes.get('/company/all', CompanyController.selectCompanies);
 routes.get('/company/event/:event_id', CompanyController.selectCompany);
 
 routes.get('/event/index', EventController.index);
-routes.post('/event/create', EventController.create);
+routes.post('/event/create', upload.single('image'), EventController.create);
 routes.put('/event/update/:id', EventController.update);
 routes.delete('/event/delete/:id', EventController.delete);
 routes.get('/event/index/:selectedValue', EventController.selectCategorie);
