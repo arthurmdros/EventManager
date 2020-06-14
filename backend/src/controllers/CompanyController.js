@@ -72,7 +72,17 @@ module.exports = {
         const { id } = req.params;
         const admin_id = req.headers.authorization;
 
-        const { name, service, mail, phone, event_id} = req.body;
+        const { 
+            name, 
+            service, 
+            mail, 
+            phone, 
+            latitude,
+            longitude,
+            city,
+            uf,
+            event_id
+        } = req.body;
 
         const company = await connection('company')
             .where('id',id)
@@ -83,16 +93,27 @@ module.exports = {
             return res.status(401).json({error: 'Operação não permitida!'});
         }
 
-        await connection('company').where('id',id)
-            .update({
-                name,
-                service,
-                mail,
-                phone,
-                admin_id,
-                event_id,
-            })
-                
+        const trx = await connection.transaction();
+
+        const newCompany = {
+            id,
+            image: req.file.filename,
+            name,
+            service,
+            mail,
+            phone,
+            latitude,
+            longitude,
+            city,
+            uf,
+            admin_id,
+            event_id,
+        };
+
+        await trx('company').where('id',id).update(newCompany)
+             
+        await trx.commit();
+
         return res.json({ id });
     },
 
