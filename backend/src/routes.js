@@ -43,8 +43,14 @@ routes.get('/company/all', CompanyController.selectCompanies);
 routes.get('/company/event/:event_id', CompanyController.selectCompany);
 
 routes.get('/event/index', EventController.index);
-routes.post('/event/create', upload.single('image'), EventController.create);
-routes.put('/event/update/:id', EventController.update);
+routes.post('/event/create', 
+    upload.single('image'),
+    EventController.create
+);
+routes.put('/event/update/:id', 
+    upload.single('image'),
+    EventController.update
+);
 routes.delete('/event/delete/:id', EventController.delete);
 routes.get('/event/index/:selectedValue', EventController.selectCategorie);
 
