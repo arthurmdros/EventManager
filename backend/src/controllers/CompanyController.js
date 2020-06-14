@@ -7,7 +7,7 @@ module.exports = {
 
         const [count] = await connection('company').count();
 
-        const companys = await connection('company')
+        const companies = await connection('company')
             .join('admin', 'admin.id', '=', 'company.admin_id')
             .limit(5)
             .offset((page - 1) * 5)
@@ -15,26 +15,55 @@ module.exports = {
                 'company.*',
                 'admin.login',
             ]);
+            
+        const serializedCompanies = companies.map(company => {
+            return{
+                ...company,
+                image_url: `http://localhost:3333/uploads/${company.image}`,
+            };
+        });
 
         res.header('Total-Companys', count['count(*)']);
-        return res.json(companys);
+        return res.json(serializedCompanies);
     },
 
-    async create(req,res){
-        const { name, service, mail, phone, event_id} = req.body;
+    async create(req,res){                           
+        const { 
+            name, 
+            service, 
+            mail, 
+            phone, 
+            latitude,
+            longitude,
+            city,
+            uf,
+            event_id
+        } = req.body;
+
         const admin_id = req.headers.authorization;
+
+        const trx = await connection.transaction();
 
         const id = crypto.randomBytes(4).toString('HEX');
 
-        await connection('company').insert({
+        const company = {
             id,
+            image: req.file.filename,
             name,
             service,
             mail,
             phone,
+            latitude,
+            longitude,
+            city,
+            uf,
             admin_id,
             event_id,
-        });
+        };
+
+        await trx('company').insert(company);      
+
+        await trx.commit();
 
         return res.json({id});        
     },
