@@ -68,6 +68,24 @@ routes.post('/event/create',
 );
 routes.put('/event/update/:id', 
     upload.single('image'),
+    classCelebrate.celebrate({
+        body: classCelebrate.Joi.object().keys({
+            title: classCelebrate.Joi.string().required(),
+            description: classCelebrate.Joi.string().required(),
+            selectedStartDate: classCelebrate.Joi.string().required(),
+            selectedEndDate: classCelebrate.Joi.string().required(),
+            selectedStartTime: classCelebrate.Joi.string().required(),
+            selectedEndTime: classCelebrate.Joi.string().required(),
+            selectedValue: classCelebrate.Joi.string().required(),
+            latitude: classCelebrate.Joi.number().required(),
+            longitude: classCelebrate.Joi.number().required(),
+            city: classCelebrate.Joi.string().required(),
+            uf: classCelebrate.Joi.string().required().max(2),            
+        })
+    },
+    {
+        abortEarly: false
+    }),
     EventController.update
 );
 routes.delete('/event/delete/:id', EventController.delete);
