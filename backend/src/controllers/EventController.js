@@ -91,7 +91,19 @@ module.exports = {
         const { id } = req.params;
         const user_id = req.headers.authorization;
 
-        const {title,description,selectedStartDate,selectedEndDate,selectedStartTime,selectedEndTime,selectedValue} = req.body;
+        const {
+            title,
+            description,
+            selectedStartDate,
+            selectedEndDate,
+            selectedStartTime,
+            selectedEndTime,
+            selectedValue,
+            latitude,
+            longitude,
+            city,
+            uf
+        } = req.body;
         
         const evento = await connection('event')
             .where('id', id)
@@ -102,18 +114,29 @@ module.exports = {
             return res.status(401).json({ error: "Operação não permitida para o usuário."})
         }
 
-        await connection('event').where('id',id)
-            .update({
-                id,
-                title,
-                description,
-                selectedStartDate,            
-                selectedEndDate,
-                selectedStartTime,
-                selectedEndTime,            
-                selectedValue,
-                user_id,
-            })
+        const trx = await connection.transaction();
+
+        const event = {
+            id,
+            image: req.file.filename,
+            title,
+            description,
+            selectedStartDate,
+            selectedEndDate,
+            selectedStartTime,
+            selectedEndTime,
+            selectedValue,
+            latitude,
+            longitude,
+            city,
+            uf,
+            user_id,
+        };
+           
+        await trx('event').where('id', id).update(event);      
+
+        await trx.commit();
+
         return res.json({id});
         
     },
