@@ -19,91 +19,91 @@ Também contará com as funcionalidades de aquisição de ingressos para os even
 
 ![Login][logo]
 
-[logo]: https://github.com/arthurmdros/EventManager/blob/master/login.png "Login"
+[logo]: https://github.com/arthurmdros/EventManager/blob/master/images/login.png "Login"
 
 ### Cadastro de usuário
 
 ![Cadastro de usuário][logo1]
 
-[logo1]: https://github.com/arthurmdros/EventManager/blob/master/register.png "Register"
+[logo1]: https://github.com/arthurmdros/EventManager/blob/master/images/register.png "Register"
 
 ### Perfil do administrador
 
 ![Profile do admin][logo2]
 
-[logo2]: https://github.com/arthurmdros/EventManager/blob/master/profile_admin.png "AdminProfile"
+[logo2]: https://github.com/arthurmdros/EventManager/blob/master/images/profile_admin.png "AdminProfile"
 
 ### Cadastrar empresa
 
 ![Cadastrar empresa][logo3]
 
-[logo3]: https://github.com/arthurmdros/EventManager/blob/master/create_company.png "CreateCompany"
+[logo3]: https://github.com/arthurmdros/EventManager/blob/master/images/create_company.png "CreateCompany"
 
 ### Detalhes de uma empresa
 
 ![Detalhes da empresa][logo5]
 
-[logo5]: https://github.com/arthurmdros/EventManager/blob/master/detail_company.png "DetailCompany"
+[logo5]: https://github.com/arthurmdros/EventManager/blob/master/images/detail_company.png "DetailCompany"
 
 ### Atualizar informações de uma empresa
 
 ![Atualizar empresa][logo4]
 
-[logo4]: https://github.com/arthurmdros/EventManager/blob/master/update_company.png "UpdateCompany"
+[logo4]: https://github.com/arthurmdros/EventManager/blob/master/images/update_company.png "UpdateCompany"
 
 ### Atualizar informações do administrador
 
 ![Atualizar admin][logo6]
 
-[logo6]: https://github.com/arthurmdros/EventManager/blob/master/update_admin.png "UpdateAdmin"
+[logo6]: https://github.com/arthurmdros/EventManager/blob/master/images/update_admin.png "UpdateAdmin"
 
 ### Perfil do usuário
 
 ![Profile do usuário][logo8]
 
-[logo8]: https://github.com/arthurmdros/EventManager/blob/master/profile_user.png "ProfileUser"
+[logo8]: https://github.com/arthurmdros/EventManager/blob/master/images/profile_user.png "ProfileUser"
 
 ### Cadastrar evento
 
 ![Cadastrar evetno][logo9]
 
-[logo9]: https://github.com/arthurmdros/EventManager/blob/master/create_event.png "CreateEvent"
+[logo9]: https://github.com/arthurmdros/EventManager/blob/master/images/create_event.png "CreateEvent"
 
 ### Cadastrar ingressos
 
 ![Cadastrar ingresso][logo10]
 
-[logo10]: https://github.com/arthurmdros/EventManager/blob/master/create_ticket.png "CreateTicket"
+[logo10]: https://github.com/arthurmdros/EventManager/blob/master/images/create_ticket.png "CreateTicket"
 
 ### Adicionar empresa
 
 ![Adicioanr empresa][logo11]
 
-[logo11]: https://github.com/arthurmdros/EventManager/blob/master/add_company.png "AddCompany"
+[logo11]: https://github.com/arthurmdros/EventManager/blob/master/images/add_company.png "AddCompany"
 
 ### Detalhes de um evento
 
 ![Detalhes do evento][logo12]
 
-[logo12]: https://github.com/arthurmdros/EventManager/blob/master/detail_event.png "DetailEvent"
+[logo12]: https://github.com/arthurmdros/EventManager/blob/master/images/detail_event.png "DetailEvent"
 
 ### Atualizar informações do evento
 
 ![Atualizar evento][logo13]
 
-[logo13]: https://github.com/arthurmdros/EventManager/blob/master/update_event.png "UpdateEvent"
+[logo13]: https://github.com/arthurmdros/EventManager/blob/master/images/update_event.png "UpdateEvent"
 
 ### Atualizar perfil do usuário
 
 ![Atualizar perfil do usuário][logo14]
 
-[logo14]: https://github.com/arthurmdros/EventManager/blob/master/update_UserProfile.png "UpdateUserProfile"
+[logo14]: https://github.com/arthurmdros/EventManager/blob/master/images/update_UserProfile.png "UpdateUserProfile"
 
 ### Atualizar conta do usuário
 
 ![Atualizar conta do usuário][logo15]
 
-[logo15]: https://github.com/arthurmdros/EventManager/blob/master/configAccount_user.png "UpdateUserAccount"
+[logo15]: https://github.com/arthurmdros/EventManager/blob/master/images/configAccount_user.png "UpdateUserAccount"
 
 ## Execução:
 
