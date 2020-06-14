@@ -17,15 +17,21 @@ const ProfileAdmController = require('./controllers/ProfileAdmController');
 const routes = express.Router();
 const upload = multer(multerConfig);
 
+/*LOGIN*/
+
 routes.post('/admin/session', LoginAdmController.create);
 routes.get('/admin/profile', ProfileAdmController.index);
 routes.post('/user/session', LoginController.create);
 routes.get('/user/profile', ProfileController.index);
 
+/*ADMIN*/
+
 routes.get('/admin/index', AdminController.index);
 routes.post('/admin/create', AdminController.create);
 routes.delete('/admin/delete/:id', AdminController.delete);
 routes.put('/admin/update/:id', AdminController.update);
+
+/*USERS*/
 
 routes.get('/user/index', UserController.index);
 routes.get('/user/index/data/:id', UserController.selectUser);
@@ -34,14 +40,17 @@ routes.put('/user/profile/update/:id', UserController.updateProfile);
 routes.put('/user/account/update/:id', UserController.updateAccount);
 routes.delete('/user/delete/:id', UserController.delete);
 
+/*COMPANIES*/
 
 routes.get('/company/index', CompanyController.index);
-routes.post('/company/create', CompanyController.create);
+routes.post('/company/create',  upload.single('image'), CompanyController.create);
 routes.put('/company/update/:id', CompanyController.update);
 routes.put('/company/select/:id', CompanyController.confirmCompany);
 routes.delete('/company/delete/:id', CompanyController.delete);
 routes.get('/company/all', CompanyController.selectCompanies);
 routes.get('/company/event/:event_id', CompanyController.selectCompany);
+
+/*EVENTS*/
 
 routes.get('/event/index', EventController.index);
 routes.post('/event/create', 
@@ -90,6 +99,8 @@ routes.put('/event/update/:id',
 );
 routes.delete('/event/delete/:id', EventController.delete);
 routes.get('/event/index/:selectedValue', EventController.selectCategorie);
+
+/*TICKETS*/
 
 routes.get('/ticket/index', TicketController.index);
 routes.post('/ticket/create', TicketController.create);
