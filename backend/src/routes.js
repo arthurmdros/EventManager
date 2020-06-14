@@ -43,8 +43,44 @@ routes.delete('/user/delete/:id', UserController.delete);
 /*COMPANIES*/
 
 routes.get('/company/index', CompanyController.index);
-routes.post('/company/create',  upload.single('image'), CompanyController.create);
-routes.put('/company/update/:id', upload.single('image'), CompanyController.update);
+routes.post('/company/create',  upload.single('image'), 
+    classCelebrate.celebrate({
+        body: classCelebrate.Joi.object().keys({
+            name: classCelebrate.Joi.string().required(),
+            service: classCelebrate.Joi.string().required(),
+            mail: classCelebrate.Joi.string().required(),
+            phone: classCelebrate.Joi.string().required(),            
+            latitude: classCelebrate.Joi.number().required(),
+            longitude: classCelebrate.Joi.number().required(),
+            city: classCelebrate.Joi.string().required(),
+            uf: classCelebrate.Joi.string().required().max(2),
+            event_id: classCelebrate.Joi.allow(),
+        })
+    },
+    {
+        abortEarly: false
+    }),
+        CompanyController.create
+);
+routes.put('/company/update/:id', upload.single('image'), 
+    classCelebrate.celebrate({
+        body: classCelebrate.Joi.object().keys({
+            name: classCelebrate.Joi.string().required(),
+            service: classCelebrate.Joi.string().required(),
+            mail: classCelebrate.Joi.string().required(),
+            phone: classCelebrate.Joi.string().required(),            
+            latitude: classCelebrate.Joi.number().required(),
+            longitude: classCelebrate.Joi.number().required(),
+            city: classCelebrate.Joi.string().required(),
+            uf: classCelebrate.Joi.string().required().max(2),
+            event_id: classCelebrate.Joi.allow(),
+        })
+    },
+    {
+        abortEarly: false
+    }),
+        CompanyController.update
+);
 routes.put('/company/select/:id', CompanyController.confirmCompany);
 routes.delete('/company/delete/:id', CompanyController.delete);
 routes.get('/company/all', CompanyController.selectCompanies);
