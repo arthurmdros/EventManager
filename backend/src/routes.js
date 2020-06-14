@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const multerConfig = require('./config/multer');
+const classCelebrate = require('celebrate');
 
 const AdminController = require('./controllers/AdminController');
 const UserController = require('./controllers/UserController');
@@ -45,6 +46,24 @@ routes.get('/company/event/:event_id', CompanyController.selectCompany);
 routes.get('/event/index', EventController.index);
 routes.post('/event/create', 
     upload.single('image'),
+    classCelebrate.celebrate({
+        body: classCelebrate.Joi.object().keys({
+            title: classCelebrate.Joi.string().required(),
+            description: classCelebrate.Joi.string().required(),
+            selectedStartDate: classCelebrate.Joi.string().required(),
+            selectedEndDate: classCelebrate.Joi.string().required(),
+            selectedStartTime: classCelebrate.Joi.string().required(),
+            selectedEndTime: classCelebrate.Joi.string().required(),
+            selectedValue: classCelebrate.Joi.string().required(),
+            latitude: classCelebrate.Joi.number().required(),
+            longitude: classCelebrate.Joi.number().required(),
+            city: classCelebrate.Joi.string().required(),
+            uf: classCelebrate.Joi.string().required().max(2),            
+        })
+    },
+    {
+        abortEarly: false
+    }),
     EventController.create
 );
 routes.put('/event/update/:id', 
