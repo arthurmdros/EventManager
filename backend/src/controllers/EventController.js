@@ -13,27 +13,58 @@ module.exports = {
            .offset((page - 1) * 5)
            .select('event.*');
         
+        const serializedEvents = events.map(event => {
+            return{
+                ...event,
+                image_url: `http://localhost:3333/uploads/${event.image}`,
+            };
+        });
+
         res.header('Total-Events', count['count(*)']);
-        return res.json(events)
+        return res.json(serializedEvents);
     },
         
     async create(req,res){
-        const {title,description,selectedStartDate,selectedEndDate,selectedStartTime,selectedEndTime,selectedValue} = req.body;
+        const {
+            title,
+            description,
+            selectedStartDate,
+            selectedEndDate,
+            selectedStartTime,
+            selectedEndTime,
+            selectedValue,
+            latitude,
+            longitude,
+            city,
+            uf
+        } = req.body;
+
         const user_id = req.headers.authorization;
+
+        const trx = await connection.transaction();
 
         const id = crypto.randomBytes(4).toString('Hex');
 
-        await connection('event').insert({
+        const event = {
             id,
+            image: req.file.filename,
             title,
             description,
-            selectedStartDate,            
+            selectedStartDate,
             selectedEndDate,
             selectedStartTime,
-            selectedEndTime,            
+            selectedEndTime,
             selectedValue,
+            latitude,
+            longitude,
+            city,
+            uf,
             user_id,
-        });
+        };
+        
+        await trx('event').insert(event);      
+
+        await trx.commit();
 
         return res.json({id});
     },
