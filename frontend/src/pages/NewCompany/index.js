@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -14,7 +15,10 @@ export default function NewCompany(){
     const [cities, setCities] = useState([]);
     const [selectedUf, setSelectedUf] = useState('0');
     const [selectedCity, setSelectedCity] = useState('0');
-    
+
+    const [initialPosition, setInitialPosition] = useState([0,0]);
+    const [selectedPosition, setSelectedPosition] = useState([0,0]);
+
     const [formData, setFormData] = useState({
         name: '',
         service: '',
@@ -24,6 +28,15 @@ export default function NewCompany(){
     
     const admin_id = localStorage.getItem('admin_id');    
     
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+
+            setInitialPosition([latitude, longitude]);
+        });
+    }, []);
+
+
     useEffect(() => {
         axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(res => {
             const ufInitials = res.data.map(uf => uf.sigla);
@@ -60,6 +73,13 @@ export default function NewCompany(){
         const city = event.target.value;
 
         setSelectedCity(city);
+    }
+
+    function handleMapClick(event){
+        setSelectedPosition([
+            event.latlng.lat,
+            event.latlng.lng,
+        ])
     }
 
     async function handleSubmit(event){
@@ -150,7 +170,17 @@ export default function NewCompany(){
                     <fieldset>
                         <legend>
                             <h2>Endereços</h2>
+                            <span>Selecione o endereço no mapa</span>
                         </legend> 
+
+                        <Map center={initialPosition} zoom={15} onClick={handleMapClick}>
+                            <TileLayer
+                                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+
+                            <Marker position={selectedPosition} />
+                        </Map>
 
                         <div className="field-group">
                             <div className="field">
