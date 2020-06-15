@@ -5,11 +5,13 @@ import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
+import Dropzone from '../../components/Dropzone';
 import api from '../../services/api';
 import logo from '../../assets/logo.png';
 
 export default function NewCompany(){    
-    const navigation = useHistory();   
+    const navigation = useHistory();  
+    const admin_id = localStorage.getItem('admin_id'); 
 
     const [ufs, setUfs] = useState([]);
     const [cities, setCities] = useState([]);
@@ -18,6 +20,7 @@ export default function NewCompany(){
 
     const [initialPosition, setInitialPosition] = useState([0,0]);
     const [selectedPosition, setSelectedPosition] = useState([0,0]);
+    const [selectedFile, setSelectedFile] = useState();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -25,8 +28,6 @@ export default function NewCompany(){
         mail: '',
         phone: '',
     });
-    
-    const admin_id = localStorage.getItem('admin_id');    
     
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
@@ -85,18 +86,42 @@ export default function NewCompany(){
     async function handleSubmit(event){
         event.preventDefault();
 
-        if(formData.name === ""){
+        const { name, service, mail, phone } = formData;
+        const uf = selectedUf;
+        const city = selectedCity;
+        const [latitude, longitude] = selectedPosition;
+
+        const data = new FormData();
+
+        data.append('name', name);            
+        data.append('service', service);            
+        data.append('mail', mail);     
+        data.append('phone', phone);
+        data.append('uf', uf);            
+        data.append('city', city);            
+        data.append('latitude', String(latitude));            
+        data.append('longitude', String(longitude));                   
+
+        if (selectedFile) {
+            data.append('image', selectedFile);
+        }
+
+        if(selectedFile === undefined){
+            alert("Uma imagem é obrigatória");
+        }
+        else if(data.get('name') === ""){
             alert("Campo nome é obrigatório");            
         }else{
+            console.log('entrou');
             try{
-                await api.post('company/create', formData, {
+                await api.post('company/create', data, {
                     headers: {
                         Authorization: admin_id,
                     }
                 });
                 alert('Salvo com sucesso!');
                 navigation.push('/page/admin/profile');
-            }catch(err){                
+            }catch(err){  
                 alert('Erro ao cadastrar, tente novamente');
             }
         }
@@ -117,6 +142,7 @@ export default function NewCompany(){
                     <h1>Cadastrar empresa</h1>
                     <p>Cadastre empresas que possam contribuir nos eventos com seus serviços, facilitando o contrato entre prestadores de serviços e organizadores de eventos.</p>
 
+                    <Dropzone onFileUploaded={setSelectedFile} />
 
                     <fieldset>
                         <legend>
