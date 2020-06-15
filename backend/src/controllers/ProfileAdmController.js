@@ -4,10 +4,17 @@ module.exports = {
     async index(req,res){
         const admin_id = req.headers.authorization;
 
-        const companys = await connection('company')
+        const companies = await connection('company')
             .where('admin_id', admin_id)
             .select('*');
 
-        return res.json(companys);
+        const serializedCompanies = companies.map(company => {
+            return{
+                ...company,
+                image_url: `http://localhost:3333/uploads/${company.image}`,
+            };
+        });
+
+        return res.json(serializedCompanies);
     }
 }
