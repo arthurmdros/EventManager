@@ -31,32 +31,44 @@ export default function CompanyDetail(){
     }
 
     return(
-        <div className="company-container">
-            <div className="content">
-                <section>
+        <div id="company-container">            
+                <header>
                     <img src={logo} alt="Event Manager"/>
-                    <h1>Informações</h1>
-                    <p>Visualize os dados comerciais da empresa, atualize informações e exclua caso necessário.</p>
-                    <Link to="/page/admin/profile">
+                   <Link to="/page/admin/profile">
                         <FiArrowLeft size={16} color="#FFF"/>
                         Voltar para home
                     </Link>
-                </section>   
+                </header>   
 
-                <ul>
-                    <li>
-                        <strong>Empresa:</strong>
-                        <p>{item.name}</p>
+                <div className="info-company">
 
-                        <strong>Serviço:</strong>
-                        <p>{item.service}</p>
+                    <h1>Informações</h1>
+                    <p>Visualize os dados comerciais da empresa, atualize informações e exclua caso necessário.</p>
+                    
+                    <img src={item.image_url} alt="Logo da empresa" />
+                    
+                    <fieldset>
+                            <div className="field">
+                                <strong>Empresa:</strong>
+                                <p>{item.name}</p>
+                            </div>
 
-                        <strong>E-mail:</strong>
-                        <p>{item.mail}</p>
-
-                        <strong>Telefone:</strong>
-                        <p>{item.phone}</p>
-
+                            <div className="field">
+                                <strong>Serviço:</strong>
+                                <p>{item.service}</p>
+                            </div>
+                        
+                        <div className="field-group">
+                            <div className="field">
+                                <strong>E-mail:</strong>
+                                <p>{item.mail}</p>
+                            </div>
+                            <div className="field">
+                                <strong>Telefone:</strong>
+                                <p>{item.phone}</p>
+                            </div>
+                        </div>
+                        </fieldset>
                         <button className="update-link" onClick={() => navigateToUpdate(item)} type="button">
                             Atualizar informações 
                             <FiEdit size={16} color="#1393f6"/>                    
@@ -66,9 +78,7 @@ export default function CompanyDetail(){
                         <button className="delete-button" onClick={() => deleteCompany(item.id)} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
-                    </li>
-                </ul>
-        </div>
-        </div>
+                    </div>
+                </div>     
     );
 }
