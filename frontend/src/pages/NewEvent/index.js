@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import DatePicker from 'react-datepicker';
@@ -35,6 +36,9 @@ export default function NewEvent(){
     const [selectedUf, setSelectedUf] = useState('0');
     const [selectedCity, setSelectedCity] = useState('0');
 
+    const [initialPosition, setInitialPosition] = useState([0,0]);
+    const [selectedPosition, setSelectedPosition] = useState([0,0]);
+
     const eventoptions = [
         { value: 'Show', label: 'Show' },
         { value: 'Festival ou Feira', label: 'Festival ou Feira' },
@@ -47,6 +51,14 @@ export default function NewEvent(){
     const [selectedValue, setSelectedValue] = useState('');
     const user_id = localStorage.getItem('user_id');
 
+        
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+
+            setInitialPosition([latitude, longitude]);
+        });
+    }, []);
 
     useEffect(() => {
         axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(res => {
@@ -77,6 +89,13 @@ export default function NewEvent(){
         const city = event.target.value;
 
         setSelectedCity(city);
+    }
+
+    function handleMapClick(event){
+        setSelectedPosition([
+            event.latlng.lat,
+            event.latlng.lng,
+        ])
     }
 
 
@@ -273,21 +292,22 @@ export default function NewEvent(){
                                 value={endDate}    
                             />
                         </div>                         
-                    </div>
-                    <div className="field-group">
-                        <div className="field">
-                            <button className='btn-ticket' onClick={navigateToTicket} type="button">Adicionar ingresso</button>             
-                        </div>
-                        <div className="field">
-                            <button className='btn-company' onClick={navigateToCompany} type="button">Adicionar empresa</button>                                     
-                        </div>
-                    </div>
+                    </div>                  
                     </fieldset> 
                     <fieldset>
                         <legend>
                             <h2>Endereços</h2>
                             <span>Selecione o endereço no mapa</span>
                         </legend> 
+
+                        <Map center={initialPosition} zoom={15} onClick={handleMapClick}>
+                            <TileLayer
+                                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+
+                            <Marker position={selectedPosition} />
+                        </Map>
 
                         <div className="field-group">
                             <div className="field">
@@ -311,7 +331,15 @@ export default function NewEvent(){
                             </div>
 
                         </div>
-                    </fieldset>                     
+                    </fieldset>    
+                    <div className="field-group">
+                        <div className="field">
+                            <button className='btn-ticket' onClick={navigateToTicket} type="button">Adicionar ingresso</button>             
+                        </div>
+                        <div className="field">
+                            <button className='btn-company' onClick={navigateToCompany} type="button">Adicionar empresa</button>                                     
+                        </div>
+                    </div>                 
                     <button className="btnForm" type="submit">Cadastrar</button>
                 </form>                
             </div>        
