@@ -111,8 +111,7 @@ export default function NewCompany(){
         }
         else if(data.get('name') === ""){
             alert("Campo nome é obrigatório");            
-        }else{
-            console.log('entrou');
+        }else{            
             try{
                 await api.post('company/create', data, {
                     headers: {
