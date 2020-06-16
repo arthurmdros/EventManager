@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 
 import api from '../../services/api';
+import Dropzone from '../../components/Dropzone';
 import './styles.css';
 import logo from '../../assets/logo.png';
 
@@ -38,6 +39,8 @@ export default function NewEvent(){
 
     const [initialPosition, setInitialPosition] = useState([0,0]);
     const [selectedPosition, setSelectedPosition] = useState([0,0]);
+
+    const [selectedFile, setSelectedFile] = useState();
 
     const eventoptions = [
         { value: 'Show', label: 'Show' },
@@ -197,6 +200,8 @@ export default function NewEvent(){
                     <h1>Cadastrar evento</h1>
                     <p>Cadastre seu evento para que pessoas possam conhecer seu trabalho como organizador.</p>                                       
                 
+                <Dropzone onFileUploaded={setSelectedFile} />
+
                 <fieldset>
                     <legend>
                         <h2>Informações</h2>
