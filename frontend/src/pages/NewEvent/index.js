@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import DatePicker from 'react-datepicker';
@@ -29,6 +30,11 @@ export default function NewEvent(){
     const [endTime, setEndTime] = useState(new Date());    
     const [selectedEndTime, setSelectedEndTime] = useState('');   
 
+    const [ufs, setUfs] = useState([]);
+    const [cities, setCities] = useState([]);
+    const [selectedUf, setSelectedUf] = useState('0');
+    const [selectedCity, setSelectedCity] = useState('0');
+
     const eventoptions = [
         { value: 'Show', label: 'Show' },
         { value: 'Festival ou Feira', label: 'Festival ou Feira' },
@@ -40,6 +46,39 @@ export default function NewEvent(){
       ]    
     const [selectedValue, setSelectedValue] = useState('');
     const user_id = localStorage.getItem('user_id');
+
+
+    useEffect(() => {
+        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(res => {
+            const ufInitials = res.data.map(uf => uf.sigla);
+            setUfs(ufInitials);
+        });
+
+    }, []);
+
+    useEffect(() => {
+        if(selectedUf === '0') return;
+
+        axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`).then(res => {
+            const citiesNames = res.data.map(city => city.nome);
+            
+            setCities(citiesNames);
+        });
+
+    }, [selectedUf]);
+    
+    function handleSelectedUf(event){
+        const uf = event.target.value;
+
+        setSelectedUf(uf);
+    }
+
+    function handleSelectedCity(event){
+        const city = event.target.value;
+
+        setSelectedCity(city);
+    }
+
 
     async function createEvent(e){
         e.preventDefault();
@@ -177,7 +216,7 @@ export default function NewEvent(){
                         <h2>Horários do evento</h2>
                     </legend>                 
                     
-                    <div className="field-group">´
+                    <div className="field-group">
                         <div className="field">
                             <label htmlFor="startTime">Inicio ás:</label>
                             <DatePicker  
@@ -243,7 +282,36 @@ export default function NewEvent(){
                             <button className='btn-company' onClick={navigateToCompany} type="button">Adicionar empresa</button>                                     
                         </div>
                     </div>
-                    </fieldset>                      
+                    </fieldset> 
+                    <fieldset>
+                        <legend>
+                            <h2>Endereços</h2>
+                            <span>Selecione o endereço no mapa</span>
+                        </legend> 
+
+                        <div className="field-group">
+                            <div className="field">
+                                <label htmlFor="uf">Estado (UF)</label>
+                                <select name="uf" id="uf" value={selectedUf} onChange={handleSelectedUf}>
+                                    <option value="0">Selecione um estado</option>
+                                        {ufs.map(uf => (
+                                            <option key={uf} value={uf}>{uf}</option>
+                                        ))}
+                                </select>
+                            </div>
+
+                            <div className="field">
+                                <label htmlFor="city">Cidade</label>
+                                <select name="city" id="city" value={selectedCity} onChange={handleSelectedCity}>
+                                    <option value="0">Selecione uma cidade</option>
+                                        {cities.map(city => (
+                                            <option key={city} value={city}>{city}</option>
+                                        ))}
+                                </select>
+                            </div>
+
+                        </div>
+                    </fieldset>                     
                     <button className="btnForm" type="submit">Cadastrar</button>
                 </form>                
             </div>        
