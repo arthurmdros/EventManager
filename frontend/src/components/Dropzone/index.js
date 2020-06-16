@@ -30,7 +30,7 @@ const Dropzone = ({ onFileUploaded }) => {
                 : (
                     <p>
                         <FiUpload />
-                        Imagem do estabelecimento
+                        Selecione um arquivo de imagem
                     </p>
                 )
             }
