@@ -18,19 +18,22 @@ export default function NewEvent(){
     var auxTicket = 0;
     var auxCompany = 0;
 
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [startDate, setStartDate] = useState(new Date());
-    const [selectedStartDate, setSelectedStartDate] = useState('');   
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+    });
+    
+    const [initialStartDate, setInitialStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState('');   
+    
+    const [initialEndDate, setInitialEndDate] = useState(new Date());    
+    const [endDate, setEndDate] = useState('');  
 
-    const [endDate, setEndDate] = useState(new Date());    
-    const [selectedEndDate, setSelectedEndDate] = useState('');  
+    const [initialStartTime, setInitialStartTime] = useState(new Date());    
+    const [startTime, setStartTime] = useState(''); 
 
-    const [startTime, setStartTime] = useState(new Date());    
-    const [selectedStartTime, setSelectedStartTime] = useState(''); 
-
-    const [endTime, setEndTime] = useState(new Date());    
-    const [selectedEndTime, setSelectedEndTime] = useState('');   
+    const [initialEndTime, setInitialEndTime] = useState(new Date());    
+    const [endTime, setEndTime] = useState('');   
 
     const [ufs, setUfs] = useState([]);
     const [cities, setCities] = useState([]);
@@ -51,7 +54,7 @@ export default function NewEvent(){
         { value: 'Convenção', label: 'Convenção' },
         { value: 'Aula, Treinamento ou Workshop', label: 'Aula, Treinamento ou Workshop' }
       ]    
-    const [selectedValue, setSelectedValue] = useState('');
+    const [initialValue, setInitialValue] = useState('');
     const user_id = localStorage.getItem('user_id');
 
         
@@ -101,19 +104,91 @@ export default function NewEvent(){
         ])
     }
 
+    function handleChange (e){
+        setInitialValue(e.value);
+    }
+
+    function handleInputChange(event){        
+        const { name, value } = event.target;
+
+        setFormData({...formData, [name]: value});
+    } 
+
+    function hanldeStartDateChange(date) {  
+        setInitialStartDate(date);
+        const day = date.getDate();   
+        const month = date.getMonth() + 1; 
+        const year = date.getFullYear();   
+        setStartDate(day+'/'+month+'/'+year);        
+    }
+
+    function hanldeEndDateChange(date) {  
+        setInitialEndDate(date);
+        const day = date.getDate();   
+        const month = date.getMonth() + 1; 
+        const year = date.getFullYear();   
+        setEndDate(day+'/'+month+'/'+year);        
+    }
+
+    function hanldeStartTimeChange(date) {  
+        setInitialStartTime(date);
+        const hour = date.getHours();   
+        const minute = date.getMinutes();         
+        setStartTime(hour+':'+minute);                
+    }
+
+    function hanldeEndTimeChange(date) {  
+        setInitialEndTime(date);
+        const hour = date.getHours();   
+        const minute = date.getMinutes();         
+        setEndTime(hour+':'+minute);     
+    }
+
+    function navigateToTicket(e){
+        auxTicket += 1;
+        createEvent(e);        
+    }
+
+    function navigateToCompany(e){
+        auxCompany += 1;
+        createEvent(e);        
+    }
 
     async function createEvent(e){
         e.preventDefault();
-        const data = { 
-            title,
-            description,
-            selectedStartDate,            
-            selectedEndDate,
-            selectedStartTime,
-            selectedEndTime,
-            selectedValue
-        };
-        if(data.title === ""){
+
+        const { title, description } = formData;
+        const uf = selectedUf;
+        const city = selectedCity;
+        const selectedStartDate = startDate;
+        const selectedEndDate = endDate;
+        const selectedStartTime = startTime;
+        const selectedEndTime = endTime;
+        const selectedValue = initialValue;
+        const [latitude, longitude] = selectedPosition;
+
+        const data = new FormData();
+
+        data.append('title', title);            
+        data.append('description', description);            
+        data.append('selectedStartDate', selectedStartDate);     
+        data.append('selectedEndDate', selectedEndDate);  
+        data.append('selectedStartTime', selectedStartTime);  
+        data.append('selectedEndTime', selectedEndTime);  
+        data.append('selectedValue', selectedValue);  
+        data.append('uf', uf);            
+        data.append('city', city);            
+        data.append('latitude', String(latitude));            
+        data.append('longitude', String(longitude));                   
+
+        if (selectedFile) {
+            data.append('image', selectedFile);
+        }
+
+        if(selectedFile === undefined){
+            alert("Uma imagem é obrigatória");
+        }
+        else if(data.get('title') === ""){
             alert('Nome do evento é obrigatório para cadastro, adição de ingresso ou empresa.');
         }else{
             try {
@@ -138,52 +213,8 @@ export default function NewEvent(){
             }catch(err){
                 alert('Erro ao cadastrar evento, tente novamente.');
             }
-        }
+        }  
         
-    }
-  
-    function handleChange (e){
-        setSelectedValue(e.value);
-    }
-
-    function hanldeStartDateChange(date) {  
-        setStartDate(date);
-        const day = date.getDate();   
-        const month = date.getMonth() + 1; 
-        const year = date.getFullYear();   
-        setSelectedStartDate(day+'/'+month+'/'+year);        
-    }
-
-    function hanldeEndDateChange(date) {  
-        setEndDate(date);
-        const day = date.getDate();   
-        const month = date.getMonth() + 1; 
-        const year = date.getFullYear();   
-        setSelectedEndDate(day+'/'+month+'/'+year);        
-    }
-
-    function hanldeStartTimeChange(date) {  
-        setStartTime(date);
-        const hour = date.getHours();   
-        const minute = date.getMinutes();         
-        setSelectedStartTime(hour+':'+minute);                
-    }
-
-    function hanldeEndTimeChange(date) {  
-        setEndTime(date);
-        const hour = date.getHours();   
-        const minute = date.getMinutes();         
-        setSelectedEndTime(hour+':'+minute);     
-    }
-
-    function navigateToTicket(e){
-        auxTicket += 1;
-        createEvent(e);        
-    }
-
-    function navigateToCompany(e){
-        auxCompany += 1;
-        createEvent(e);        
     }
 
     return(
@@ -208,21 +239,21 @@ export default function NewEvent(){
                     </legend>
 
                     <div className="field">
-                        <label htmlFor="name">Evento:</label>
+                        <label htmlFor="title">Evento:</label>
                         <input 
                             type="text"
-                            name="name"
-                            id="name"
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
+                            name="title"
+                            id="title"
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div className="field">
-                        <label htmlFor="name">Descrição</label>
-                        <textarea                         
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
+                        <label htmlFor="description">Descrição</label>
+                        <textarea                                 
+                            name="description"        
+                            id="description"            
+                            onChange={handleInputChange}
                         />
                     </div>
 
@@ -231,7 +262,7 @@ export default function NewEvent(){
                         <Select                                                    
                             className="select-input" 
                             options={eventoptions}
-                            value={eventoptions.filter(obj => obj.value === selectedValue)} 
+                            value={eventoptions.filter(obj => obj.value === initialValue)} 
                             onChange={handleChange}
                         />
                     </div>  
@@ -245,14 +276,14 @@ export default function NewEvent(){
                             <label htmlFor="startTime">Inicio ás:</label>
                             <DatePicker  
                                 className="select-datepicker"                          
-                                selected={startTime}
+                                selected={initialStartTime}
                                 onChange={date => hanldeStartTimeChange(date)}
                                 showTimeSelect
                                 showTimeSelectOnly                               
                                 timeIntervals={30}
                                 timeCaption="Time"
                                 dateFormat="h:mm a"                                
-                                value={startTime}
+                                value={initialStartTime}
                                 
                             /> 
                         </div>
@@ -260,14 +291,14 @@ export default function NewEvent(){
                             <label htmlFor="endTime">Termina ás:</label>
                             <DatePicker
                                 className="select-datepicker"                          
-                                selected={endTime}
+                                selected={initialEndTime}
                                 onChange={date => hanldeEndTimeChange(date)}
                                 showTimeSelect
                                 showTimeSelectOnly                            
                                 timeIntervals={30}
                                 timeCaption="Time"
                                 dateFormat="h:mm a"  
-                                value={endTime}                          
+                                value={initialEndTime}                          
                             /> 
                         </div>                       
                     </div>
@@ -281,20 +312,20 @@ export default function NewEvent(){
                             <label htmlFor="startDate">Inicio dia:</label>
                             <DatePicker
                                 className="select-datepicker"                          
-                                selected={startDate}
+                                selected={initialStartDate}
                                 onChange={date => hanldeStartDateChange(date)}                         
                                 dateFormat="dd/MM/yyyy"  
-                                value={startDate}                                                         
+                                value={initialStartDate}                                                         
                             />  
                         </div>
                         <div className="field">
                             <label htmlFor="startTime">Termina dia:</label>
                             <DatePicker
                                 className="select-datepicker"                          
-                                selected={endDate}
+                                selected={initialEndDate}
                                 onChange={date => hanldeEndDateChange(date)}
                                 dateFormat="dd/MM/yyyy"
-                                value={endDate}    
+                                value={initialEndDate}    
                             />
                         </div>                         
                     </div>                  
