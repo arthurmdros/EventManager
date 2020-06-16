@@ -74,6 +74,7 @@ routes.put('/company/update/:id', upload.single('image'),
             city: classCelebrate.Joi.string().required(),
             uf: classCelebrate.Joi.string().required().max(2),
             event_id: classCelebrate.Joi.allow(),
+            image: classCelebrate.Joi.allow(),
         })
     },
     {
@@ -125,7 +126,8 @@ routes.put('/event/update/:id',
             latitude: classCelebrate.Joi.number().required(),
             longitude: classCelebrate.Joi.number().required(),
             city: classCelebrate.Joi.string().required(),
-            uf: classCelebrate.Joi.string().required().max(2),            
+            uf: classCelebrate.Joi.string().required().max(2),   
+            image: classCelebrate.Joi.allow(),         
         })
     },
     {
