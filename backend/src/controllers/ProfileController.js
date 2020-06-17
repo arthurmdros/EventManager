@@ -8,6 +8,13 @@ module.exports = {
             .where('user_id', user_id)
             .select('*');
 
-        return res.json(events);
+        const serializedEvents = events.map(event => {
+            return{
+                ...event,
+                image_url: `http://localhost:3333/uploads/${event.image}`,
+            };
+        });
+
+        return res.json(serializedEvents);
     }
 }
