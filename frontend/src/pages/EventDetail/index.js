@@ -10,7 +10,7 @@ import './styles.css';
 export default function EventDetail(){   
     const navigation = useHistory();
     const route = useLocation();
-    const item = route.state;    
+    const item = route.state;      
     const user_id = item.user_id;
     const [tickets, setTickets] = useState([]);
     const [companies, setCompanies] = useState([]);
@@ -43,50 +43,67 @@ export default function EventDetail(){
     }
 
     return(
-        <div className="event-container">
+        <div id="event-container">
             
             
             <header>
                 <img src={logo} alt="Event Manager"/>
-                <h1>Informações</h1>
-                <div>                    
+                                 
                     <Link to="/page/user/profile">
                         <FiArrowLeft size={16} color="#FFF"/>
                         Voltar para home
                     </Link>
-                </div>
             </header> 
 
-                <ul className="event-info">
-                    <li>
-                        <strong>Evento:</strong>
-                        <p>{item.title}</p>
+                <div className="event-info">
+                    <h1>Informações</h1>
 
-                        <strong>Descrição:</strong>
-                        <p>{item.description}</p>
-                        
-                        <section className="titles">
-                            <strong>Inicia dia:</strong>                        
-                            <strong>Termina dia:</strong>
-                        </section>
+                    <img src={item.image_url} alt="Logo do evento" />
 
-                        <div className = "container-date">
-                            <p>{item.selectedStartDate}</p>
-                            <p>{item.selectedEndDate}</p>
+                    <fieldset>
+                        <div className="field">
+                            <strong>Evento:</strong>
+                            <p>{item.title}</p>
                         </div>
 
-                        <section className="titles">
-                            <strong>Começando às:</strong>
-                            <strong>Terminando às:</strong>
-                        </section>
+                        <div className="field">
+                            <strong>Descrição:</strong>
+                            <p>{item.description}</p>
+                        </div>
                         
-                        <div className = "container-time">
-                            <p>{item.selectedStartTime}</p>                        
-                            <p>{item.selectedEndTime}</p>
+                        <div className="field-group">
+
+                            <div className = "field">
+                                <strong>Inicia dia:</strong>  
+                                <p>{item.selectedStartDate}</p>  
+                            </div>
+
+                            <div className = "field">
+                                <strong>Termina dia:</strong>
+                                <p>{item.selectedEndDate}</p>
+                            </div>
+                           
                         </div>
 
-                        <strong>Tipo:</strong>
-                        <p>{item.selectedValue}</p>
+                      
+
+                        <div className="field-group">
+                            <div className = "field">
+                                <strong>Começando às:</strong>                            
+                                <p>{item.selectedStartTime}</p> 
+                            </div>
+
+                            <div className = "field">                      
+                                <strong>Terminando às:</strong>
+                                <p>{item.selectedEndTime}</p>
+                            </div>                            
+                        </div>
+                        
+
+                        <div className = "field">
+                            <strong>Tipo:</strong>
+                            <p>{item.selectedValue}</p>
+                        </div>
                                         
                         <strong>Ingressos disponíveis:</strong>
                         <ul className="list-ticket">
@@ -121,9 +138,10 @@ export default function EventDetail(){
                                     <p>{company.phone}</p> 
                                 </li> 
                             ))}                                  
-                        </ul> 
-
-                        <button className="update-link" onClick={() => navigateToUpdate(item)} type="button">
+                        </ul>                         
+                    </fieldset>
+                    
+                    <button className="update-link" onClick={() => navigateToUpdate(item)} type="button">
                             Atualizar informações 
                             <FiEdit size={16} color="#1393f6"/>                    
                         </button>
@@ -131,8 +149,7 @@ export default function EventDetail(){
                         <button className = 'delete-button' onClick={() => deleteEvent(item.id)} type="button">
                             <BsTrash size={18} color="#1393f6"/>
                         </button>
-                    </li>
-                </ul>
+                </div>
         </div>
         
     );
