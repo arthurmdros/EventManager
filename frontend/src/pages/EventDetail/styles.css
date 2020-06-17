@@ -1,151 +1,197 @@
-.event-container {
+#event-container {
     width: 100%;
-    max-width: 1500px;
-    padding: 0 60px;
-    margin: auto;
+    max-width: 1100px;
+
+    margin: 0 auto;
 }
 
+#event-container header {
+    margin-top: 0px;
 
-.event-container  header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.event-container  header div{
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-}
-
-.event-container  header img {
-  height: 150px;
-}
-
-.event-container  header h1 {
-    font-size: 24px;
+#event-container header a {
     color: #FFF;
-    margin-top: 150px;
-  }
-
-.event-container  header a {
-    width: 150px;
-    margin-left: auto;
-    margin-top: 0; 
-}
-.event-container .event-info {
+    text-decoration: none;
+    margin-left: 700px;    
     display: flex;
-    width: 90%;
-    list-style: none;
-    margin: auto;
-    margin-bottom: 40px;    
-    margin-top: 40px;
-    margin-left: 170px;  
+    align-items: center;
 }
 
-.event-container .event-info li{
+#event-container .event-info {
+    margin: 40px auto;
+    padding: 64px;
+    max-width: 1100px;
     background: #FFF;
-    padding: 18px;
-    border-radius: 8px;
-    position: relative;
-    width: 80%;
+    border-radius: 8px;    
+
+    display: flex;
+    flex-direction: column;
 }
 
-.event-container .event-info li .delete-button{
+#event-container .event-info img {        
+    width: 50%;        
+    resize: both;
+    border-radius: 10;
+    margin-top: 32px;
+    margin-left: 250px;
+}
+
+#event-container .event-info h1 {
+    font-size: 32px;
+}
+
+#event-container .event-info p{
+    margin-top: 10px;
+    font-size: 18px;    
+    line-height: 32px;
+}
+
+#event-container .event-info fieldset {
+    margin-top: 64px;
+    min-inline-size: auto;
+    border: 0;
+    margin-left: 100px;
+}
+
+#event-container .event-info legend {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+#event-container .event-info .field-group {
+    flex: 1;
+    display: flex;
+}
+
+#event-container .event-info .field {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+#event-container .event-info .field input{
+    flex: 1;
+    background: #F0F0F5;
+    border-radius: 8px;
+    border: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+    color: #6C6C80;
+    width: 100%;
+}
+
+#event-container .event-info .field label {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+#event-container .event-info .field :disabled {
+    cursor: not-allowed;
+}
+
+#event-container .event-info .field-group .field + .field {
+    margin-left: 24px;
+}
+
+#event-container .event-info .field-group input + input {
+    margin-left: 24px;
+}
+
+#event-container .event-info button:hover {
+    background: #A0A0B2;
+    color: #FFF;
+}
+
+#event-container .event-info .delete-button{
     position: absolute;
-    right: 4px;
-    top: 10px;
+    align-self: flex-end;
+    margin-top: 0px;
     border: 0;
     width: 5%;
 }
 
-.event-container .event-info li button:hover{
-    opacity: 0.8;
-}
-
-.event-container .event-info li strong{
-    display: block;
-    margin-bottom: 10px;
-    color: #41414d;    
-}
-
-.event-container .event-info li p + strong{
-    margin-top: 20px;
-}
-
-.event-container .event-info li p{
-    color: #41414d;
-    line-height: 21px;
+#event-container  .event-info .update-link {    
     font-size: 16px;
-}
-
-.event-container  .event-info li a {
-    width: 50%;
-    color: #41414d;
-    font-size: 16px;
-    margin-top: 15px;    
-  }
-
-.event-container  .container-date, .container-time {
-    display: flex;          
-    justify-content: space-between;    
-    margin-bottom: 8px;
-}
-
-.event-container .titles{    
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-}
-
-.event-container .titles strong{    
-    font-size: 14px;
-    color: #41414d;
-    line-height: 21px;
-}
-
-.event-container .event-info li .update-link {    
-    color: #41414d;
-    font-size: 16px;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;        
-    text-decoration: none;
-    font-weight: 500;
-    transition: opacity 0.2s;    
     width: 20%;
-    margin-bottom: 0px;
+    color: #1393f6;
+    background: var(--primary-color);
+    border-radius: 8px;        
+    font-weight: bold;        
+    border: 0;
+    align-self: flex-start;
+    margin-top: 40px;    
+    transition: background-color 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.event-container .event-info li .list-ticket {
+#event-container .event-info  .list-ticket {
     display: grid;
     width: 100%;
     list-style: none;
 }
 
-.event-container .event-info li .list-ticket li{
+#event-container .event-info  .list-ticket li{
+    margin-top: 20px;
     display: flex;    
-    width: 100%;
+    width: 110%;
+    margin-bottom: 20px;
+    align-items: center;    
+    align-self: flex-end;
 }
 
-.event-container .event-info li .list-ticket strong{
+#event-container .event-info  .list-ticket li strong{
     display: block;
-    margin-top: 0px;
     color: #41414d; 
-    margin-left: 100px;
+    margin-left: 150px;
+    margin-top: 10px;
 }
-.event-container .event-info li .list-ticket p + strong{
+
+#event-container .event-info  .list-ticket li p + strong{
     margin-left: 100px;    
 }
 
-.event-container .event-info .list-ticket li p{
+#event-container .event-info .list-ticket li p{
     color: #41414d;
     line-height: 21px;
     font-size: 16px;
-    margin-left: 5px;
+    margin-left: 10px;
 }    
 
-.event-container .event-info li .list-company {
+#event-container .event-info .list-company {
     display: flex;
     width: 100%;
     list-style: none;
+}
+
+#event-container .event-info .list-company  li {    
+    margin-top: 20px;    
+    margin-bottom: 20px;
+}
+
+#event-container .event-info .list-company  li + li{
+    margin-left: 60px;    
+}
+
+#event-container .event-info .list-company li strong{
+    display: block;    
+    color: #41414d; 
+    margin-top: 10px;
+}
+
+#event-container .event-info .list-company li p{
+    color: #41414d;
+    line-height: 21px;
+    font-size: 14px;
 }
