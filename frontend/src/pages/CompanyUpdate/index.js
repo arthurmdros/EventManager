@@ -21,7 +21,6 @@ export default function CompanyUpdate(){
     const [selectedUf, setSelectedUf] = useState(item.uf);
     const [selectedCity, setSelectedCity] = useState(item.city);
 
-    const [initialPosition, setInitialPosition] = useState([item.latitude,item.longitude]);
     const [selectedPosition, setSelectedPosition] = useState([item.latitude, item.longitude]);    
 
     const [formData, setFormData] = useState({
@@ -194,7 +193,7 @@ export default function CompanyUpdate(){
                             <span>Selecione o endereço no mapa</span>
                         </legend> 
 
-                        <Map center={initialPosition} zoom={15} onClick={handleMapClick}>
+                        <Map center={selectedPosition} zoom={15} onClick={handleMapClick}>
                             <TileLayer
                                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
