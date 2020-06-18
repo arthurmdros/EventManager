@@ -32,6 +32,14 @@
     flex-direction: column;
 }
 
+#eventupdate-container form img {    
+    width: 50%;        
+    resize: both;
+    border-radius: 10;
+    margin-top: 32px;
+    margin-left: 150px;
+}
+
 #eventupdate-container form h1 {
     font-size: 32px;
 }
