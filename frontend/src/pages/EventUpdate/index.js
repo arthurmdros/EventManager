@@ -139,7 +139,8 @@ export default function NewEvent(){
                 </header>
                 
                 <form onSubmit={updateEvent}>
-                    <h1>Atualizar informações</h1>                    
+                    <h1>Atualizar informações</h1>   
+                    <img src={item.image_url} alt={item.name}/>                 
                 
                 <fieldset>
                     <legend>
