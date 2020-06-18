@@ -26,9 +26,9 @@ export default function Profile(){
              
     async function selectCompany(company){    
         company.event_id = event_id;
-        if(limit === 5){
+        if(limit === 4){
             alert('Limite de empresas contratadas atingido.');
-            navigation.push('/page/user/profile');
+            return;
         }else{
             try{
                 await api.put(`company/select/${company.id}`, company);  
