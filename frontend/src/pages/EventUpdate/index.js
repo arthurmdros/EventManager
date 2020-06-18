@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 import axios from 'axios';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 
 import api from '../../services/api';
 import './styles.css';
@@ -27,6 +28,8 @@ export default function NewEvent(){
     const [cities, setCities] = useState([]);
     const [selectedUf, setSelectedUf] = useState(item.uf);
     const [selectedCity, setSelectedCity] = useState(item.city);
+    
+    const [selectedPosition, setSelectedPosition] = useState([item.latitude, item.longitude]); 
 
     const [startDate, setStartDate] = useState(new Date());
     const [selectedStartDate, setSelectedStartDate] = useState('');   
@@ -80,6 +83,13 @@ export default function NewEvent(){
         const city = event.target.value;
 
         setSelectedCity(city);
+    }
+
+    function handleMapClick(event){
+        setSelectedPosition([
+            event.latlng.lat,
+            event.latlng.lng,
+        ])
     }
 
     async function updateEvent(e){             
@@ -277,6 +287,15 @@ export default function NewEvent(){
                     </div>
                     </fieldset>  
                     <fieldset>
+
+                    <Map center={selectedPosition} zoom={15} onClick={handleMapClick}>
+                        <TileLayer
+                            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+
+                        <Marker position={selectedPosition} />
+                    </Map>
                                      
                     <div className="field-group">
                             <div className="field">
